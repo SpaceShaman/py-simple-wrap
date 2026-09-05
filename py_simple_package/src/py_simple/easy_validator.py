@@ -423,3 +423,44 @@ def is_valid_ipv4(ip: str) -> bool:
  
     return True
 
+
+
+def is_valid_ipv6(ip: str) -> bool:
+    r"""
+    Returns true if the string is a valid IPv6 address.
+
+    Handles full IPv6 addresses, including those with zone IDs stripped,
+    as well as IPv4-mapped IPv6 addresses (e.g. ::ffff:192.168.1.1).
+    Does not accept IPv4-mapped notation where the IPv4 part exceeds 255.
+
+    Arguments:
+        ip (str): the IP address to validate.
+
+    Returns:
+        bool: True if the IP address is valid, False otherwise.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import is_valid_ipv6
+
+            result = is_valid_ipv6("2001:0db8:85a3:0000:0000:8a2e:0370:7334")  # -> True
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import ipaddress
+
+            try:
+                ipaddress.IPv6Address(ip)
+                result = True
+            except ValueError:
+                result = False
+            ```
+    """
+    import ipaddress
+    try:
+        ipaddress.IPv6Address(ip)
+        return True
+    except ValueError:
+        return False
