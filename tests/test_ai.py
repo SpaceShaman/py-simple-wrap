@@ -2,6 +2,7 @@ import pytest
 from unittest.mock import MagicMock, patch
 from py_simple.easy_ai import (
     summarize_text, 
+    translate_text,
     get_model,
     ask_ai,
     ai_chat,
@@ -117,3 +118,41 @@ def test_ai_chat_sends_message_then_exits(capsys):
     captured = capsys.readouterr()
     assert "AI: Hi!" in captured.out
     mock_model.invoke.assert_called_once()
+
+def test_translate_text_success():
+    """Test that translate_text correctly returns model response content."""
+    mock_model = MagicMock()
+    mock_response = MagicMock()
+    mock_response.content = "Hello world"
+    mock_model.invoke.return_value = mock_response
+
+    result = translate_text(mock_model, "Hola mundo", target_lang="English")
+
+    assert result == "Hello world"
+    mock_model.invoke.assert_called_once()
+
+
+def test_translate_text_default_target_lang():
+    """Test that translate_text defaults to English when target_lang not specified."""
+    mock_model = MagicMock()
+    mock_response = MagicMock()
+    mock_response.content = "Good morning"
+    mock_model.invoke.return_value = mock_response
+
+    result = translate_text(mock_model, "Buenos días")
+
+    assert result == "Good morning"
+    # verify the prompt included "English"
+    call_args = mock_model.invoke.call_args[0][0]
+    assert "English" in call_args
+
+
+def test_translate_text_error():
+    """Test that translate_text wraps execution errors in EasyAIError."""
+    mock_model = MagicMock()
+    mock_model.invoke.side_effect = Exception("Model timeout")
+
+    with pytest.raises(EasyAIError) as exc_info:
+        translate_text(mock_model, "Bonjour")
+
+    assert "Model timeout" in str(exc_info.value)
