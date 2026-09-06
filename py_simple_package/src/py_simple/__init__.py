@@ -53,7 +53,7 @@ from .easy_flow import (
 )
 from .easy_regex import (
     extract_urls, extract_numbers, extract_number_sequences,
-    extract_emails,
+    extract_emails, extract_hex_colors,
 )
 from .easy_async import (
     run_at_the_same_time_no_params, run_at_the_same_time_with_params,
