@@ -451,6 +451,46 @@
         "documentation",
         "code"
       ]
+    },
+    {
+      "login": "dave123981",
+      "name": "David King",
+      "avatar_url": "https://github.com/dave123981.png",
+      "profile": "https://github.com/dave123981",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "Steve99bs",
+      "name": "Tinko Stratiev",
+      "avatar_url": "https://github.com/Steve99bs.png",
+      "profile": "https://github.com/Steve99bs",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "Gambit-Checkmate",
+      "name": "Checkmate",
+      "avatar_url": "https://github.com/Gambit-Checkmate.png",
+      "profile": "https://github.com/Gambit-Checkmate",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "AhmadBilalDSA",
+      "name": "Ahmad Bilal",
+      "avatar_url": "https://github.com/AhmadBilalDSA.png",
+      "profile": "https://github.com/AhmadBilalDSA",
+      "contributions": [
+        "test",
+        "code"
+      ]
     }
   ]
 }

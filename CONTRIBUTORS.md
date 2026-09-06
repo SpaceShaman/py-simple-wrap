@@ -160,6 +160,32 @@ Every tile below is a real person who showed up for this project. 💛
       </a>
     </td>
   </tr>
+  <tr>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/dave123981">
+        <img src="https://github.com/dave123981.png" width="100px;" alt="David King"/><br />
+        <sub><b>David King</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/Steve99bs">
+        <img src="https://github.com/Steve99bs.png" width="100px;" alt="Tinko Stratiev"/><br />
+        <sub><b>Tinko Stratiev</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/Gambit-Checkmate">
+        <img src="https://github.com/Gambit-Checkmate.png" width="100px;" alt="Checkmate"/><br />
+        <sub><b>Checkmate</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/AhmadBilalDSA">
+        <img src="https://github.com/AhmadBilalDSA.png" width="100px;" alt="Ahmad Bilal"/><br />
+        <sub><b>Ahmad Bilal</b></sub>
+      </a>
+    </td>
+  </tr>
 </table>
 
 ---
@@ -317,6 +343,32 @@ Every tile below is a real person who showed up for this project. 💛
       <a href="https://github.com/ohnsh">
         <img src="https://github.com/ohnsh.png" width="100px;" alt="ohnsh"/><br />
         <sub><b>John Sherrell</b></sub>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/dave123981">
+        <img src="https://github.com/dave123981.png" width="100px;" alt="David King"/><br />
+        <sub><b>David King</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/Steve99bs">
+        <img src="https://github.com/Steve99bs.png" width="100px;" alt="Tinko Stratiev"/><br />
+        <sub><b>Tinko Stratiev</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/Gambit-Checkmate">
+        <img src="https://github.com/Gambit-Checkmate.png" width="100px;" alt="Checkmate"/><br />
+        <sub><b>Checkmate</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/AhmadBilalDSA">
+        <img src="https://github.com/AhmadBilalDSA.png" width="100px;" alt="Ahmad Bilal"/><br />
+        <sub><b>Ahmad Bilal</b></sub>
       </a>
     </td>
   </tr>
@@ -595,6 +647,12 @@ The Module Magicians. The Code Conjurers. The Test Sentinels. The Lore Keepers. 
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Atharvs13"><img src="https://github.com/Atharvs13.png?s=80" width="80px;" alt="Atharvs13m"/><br /><sub><b>Atharvs13m</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Atharvs13" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Atharvs13" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mah1104ahm"><img src="https://github.com/mah1104ahm.png?s=80" width="80px;" alt="M Ahmed"/><br /><sub><b>M Ahmed</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=mah1104ahm" title="Tests">🧪</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ohnsh"><img src="https://github.com/ohnsh.png?s=80" width="80px;" alt="John Sherrell"/><br /><sub><b>John Sherrell</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=ohnsh" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=ohnsh" title="Docs">📖</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=ohnsh" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dave123981"><img src="https://github.com/dave123981.png?s=80" width="80px;" alt="David King"/><br /><sub><b>David King</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=dave123981" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=dave123981" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Steve99bs"><img src="https://github.com/Steve99bs.png?s=80" width="80px;" alt="Tinko Stratiev"/><br /><sub><b>Tinko Stratiev</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Steve99bs" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Steve99bs" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Gambit-Checkmate"><img src="https://github.com/Gambit-Checkmate.png?s=80" width="80px;" alt="Checkmate"/><br /><sub><b>Checkmate</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Gambit-Checkmate" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Gambit-Checkmate" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AhmadBilalDSA"><img src="https://github.com/AhmadBilalDSA.png?s=80" width="80px;" alt="Ahmad Bilal"/><br /><sub><b>Ahmad Bilal</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=AhmadBilalDSA" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=AhmadBilalDSA" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
