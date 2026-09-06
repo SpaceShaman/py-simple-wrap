@@ -5,8 +5,10 @@ import tempfile
 
 import pytest
 from PIL import Image
+from py_simple_package.src.py_simple import create_thumbnail as public_create_thumbnail
 
 from py_simple_package.src.py_simple.easy_images import (
+    create_thumbnail,
     resize_image,
     convert_image,
     rotate_image,
@@ -54,6 +56,39 @@ class TestResizeImage:
     def test_missing_input_raises(self, tmp_workdir):
         with pytest.raises(ImageProcessingError):
             resize_image("does_not_exist.png", "out.png", 10, 10)
+
+
+class TestCreateThumbnail:
+    """Tests for create_thumbnail function."""
+
+    def test_fits_within_dimensions_and_preserves_aspect_ratio(self, sample_png):
+        create_thumbnail(sample_png, "thumbnail.png", 40, 40)
+        with Image.open("thumbnail.png") as img:
+            assert img.size == (40, 24)
+
+    def test_does_not_enlarge_small_image(self, sample_png):
+        create_thumbnail(sample_png, "thumbnail.png", 200, 200)
+        with Image.open("thumbnail.png") as img:
+            assert img.size == (100, 60)
+
+    @pytest.mark.parametrize(
+        "max_width, max_height",
+        [(0, 20), (20, -1), (20.5, 20), (True, 20)],
+    )
+    def test_rejects_invalid_dimensions(
+        self, sample_png, max_width, max_height
+    ):
+        with pytest.raises(ValueError):
+            create_thumbnail(
+                sample_png, "thumbnail.png", max_width, max_height
+            )
+
+    def test_missing_input_raises(self, tmp_workdir):
+        with pytest.raises(ImageProcessingError):
+            create_thumbnail("does_not_exist.png", "out.png", 20, 20)
+
+    def test_is_available_from_public_api(self):
+        assert public_create_thumbnail is create_thumbnail
 
 
 class TestConvertImage:

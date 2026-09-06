@@ -81,7 +81,7 @@ from .easy_stats import (
     median, mode, data_range, variance, standard_deviation, percentile, z_score, interquartile_range
 )
 from .easy_images import (
-    resize_image, convert_image, rotate_image, get_image_info,
+    resize_image, create_thumbnail, convert_image, rotate_image, get_image_info,
 )
 from .easy_game import (
     basic_game_setup, check_if_quit, get_mouse_position,
