@@ -90,7 +90,7 @@ from .easy_game import (
 )
 from .easy_generator import (
     generate_qr_code, generate_password, generate_otp, generate_api_key,
-    generate_uuid,
+    generate_uuid, generate_slug,
 )
 from .easy_math import (
     get_least_common_multiple, factorial, fibonacci, prime_factorization,

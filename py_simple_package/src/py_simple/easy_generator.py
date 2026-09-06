@@ -2,6 +2,8 @@
 easy_generator helps generate things faster.
 """
 
+import re
+import unicodedata
 import string
 import random
 import qrcode
@@ -109,6 +111,53 @@ def generate_password(pass_length: int = 12, uppercase_chars: int = 2,
             all_clear = True
 
     return ''.join(pass_chars)
+
+
+def generate_slug(text: str) -> str:
+    """
+    Generates a slug(URL-friendly string) from string. 
+
+    Args:
+        text (str): The text to be converted to a slug.
+
+    Returns:
+        str: A URL-friendly slug.
+
+    Raises:
+        EasyGeneratorError: If `str` is empty, or if the 
+        slug conversion fails.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import generate_slug
+            
+            text = "Hello This-Becomes_A slug"
+            slug = generate_slug(text)
+            print(slug)  # 'hello-this-becomes-a-slug'
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import re
+            import unicodedata
+
+            text = "Hello This-Becomes_A slug"
+
+            normalized = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
+            lowercased = normalized.lower()
+            slug = re.sub(r"[^a-z0-9]+", "-", lowercased).strip("-")
+            print(slug)
+    """
+    if not isinstance(text, str):
+        raise EasyGeneratorError("You need to provide a string.")
+    # Unicode Normalization Form KD (NFKD) is the most aggressive normalization form
+    normalized_text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
+    lowercased_text = normalized_text.lower()
+    slug = re.sub(r"[^a-z0-9]+", "-", lowercased_text).strip("-")
+    if not slug:
+        raise EasyGeneratorError("This string has no valid characters to convert.")
+    return slug
 
 
 def generate_qr_code(data_to_encode: str) -> None:

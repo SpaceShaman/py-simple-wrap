@@ -30,6 +30,8 @@ J4Yx8Qv3...
 
 `generate_password()` creates a randomized password containing lowercase letters, uppercase letters, digits, and special characters according to the options you provide.
 
+`generate_slug()` converts a valid string to a URL-friendly string. 
+
 `generate_uuid()` generates a random UUID version 4, which is useful when you need a unique identifier.
 
 `generate_api_key()` generates a secure, URL-safe random string using Python's `secrets` module, making it suitable for API keys and access tokens.
