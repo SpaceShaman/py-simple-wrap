@@ -81,7 +81,7 @@ def test_get_model_ollama_default_url():
         get_model("ollama", "llama3")
 
     _, kwargs = mock_cls.call_args
-        assert kwargs["base_url"] == "http://localhost:11434"
+    assert kwargs["base_url"] == "http://localhost:11434"
 
 
 def test_get_model_provider_case_insensitive():
