@@ -1,5 +1,5 @@
 import pytest
-from py_simple.easy_random import (
+from py_simple_package.src.py_simple.easy_random import (
     roll_dice,
     flip_coin,
     pick_random_item,

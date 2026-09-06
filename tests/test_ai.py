@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from py_simple.easy_ai import (
+from py_simple_package.src.py_simple.easy_ai import (
     summarize_text, 
     translate_text,
     get_model,

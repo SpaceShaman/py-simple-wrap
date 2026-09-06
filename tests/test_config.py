@@ -1,6 +1,6 @@
 import git
 import pytest
-from py_simple.easy_config import EasyConfigError, gh_workflow_config
+from py_simple_package.src.py_simple.easy_config import EasyConfigError, gh_workflow_config
 
 
 def test_gh_workflow_config_writes_template_at_current_directory(tmp_path, monkeypatch):
