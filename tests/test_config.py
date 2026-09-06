@@ -45,7 +45,9 @@ def test_gh_workflow_config_wraps_template_errors(tmp_path, monkeypatch):
     def missing_template(_package):
         raise FileNotFoundError("template missing")
 
-    monkeypatch.setattr("py_simple.easy_config.files", missing_template)
+    monkeypatch.setattr(
+        "py_simple_package.src.py_simple.easy_config.files",
+        missing_template)
 
     with pytest.raises(EasyConfigError, match="template missing"):
         gh_workflow_config("broken")
