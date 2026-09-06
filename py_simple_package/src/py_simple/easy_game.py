@@ -224,3 +224,49 @@ def is_right_mouse_button_clicked() -> bool:
             ```
     """
     return pygame.mouse.get_pressed()[2]
+
+
+def draw_text(screen: pygame.Surface, text: str, x: int, y: int, font_size: int = 24,
+              color: tuple = (255, 255, 255)) -> None:
+    """
+    Draws a text string onto the game screen at the specified coordinates,
+    saving you from writing font initialization and rendering boilerplate.
+
+    Args:
+        screen (pygame.Surface): The pygame surface to draw the text onto.
+        text (str): The text string to display.
+        x (int): X-coordinate of the text position.
+        y (int): Y-coordinate of the text position.
+        font_size (int, optional): Size of the font. Defaults to 24.
+        color (tuple, optional): RGB tuple for text color. Defaults to white `(255, 255, 255)`.
+
+    Returns:
+        None
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import basic_game_setup, draw_text
+
+            screen, clock = basic_game_setup(800, 600)
+            draw_text(screen, "Hello World", 100, 100, 32, (0, 255, 0))
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import pygame
+
+            pygame.font.init()
+            font = pygame.font.Font(None, 32)
+            text_surface = font.render("Hello World", True, (0, 255, 0))
+            screen.blit(text_surface, (100, 100))
+            ```
+    """
+    try:
+        if not pygame.font.get_init():
+            pygame.font.init()
+        font = pygame.font.Font(None, font_size)
+        text_surface = font.render(text, True, color)
+        screen.blit(text_surface, (x, y))
+    except Exception as e:
+        raise EasyGameError(f"\n\n\nERROR: {e}") from None

@@ -309,3 +309,44 @@ class EasyAgent:
             raise EasyAIError(f"\n\n\nERROR: {path} not supported. "
                               f"Only `.txt` files are supported.") \
                 from None
+
+def translate_text(ai_model: BaseChatModel, text: str, target_language: str) -> str:
+    """
+    Sends a request to translate the provided text into the target language
+    using the given LangChain chat model.
+
+    Args:
+        ai_model (BaseChatModel): A LangChain chat model instance,
+            such as one returned by `get_model()`.
+        text (str): The raw text string to be translated.
+        target_language (str): The name of the language to translate into.
+
+    Returns:
+        str: The translated text.
+
+    Raises:
+        EasyAIError: If the underlying model call fails.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import get_model, translate_text
+
+            model = get_model("anthropic", "claude-sonnet-4-6")
+            translation = translate_text(model, "Hello world", "Spanish")
+            ```
+
+        === "The Traditional Way"
+            ```python
+            from langchain_anthropic import ChatAnthropic
+            from langchain_core.messages import HumanMessage
+
+            model = ChatAnthropic(model_name="claude-sonnet-4-6")
+            translation = model.invoke([HumanMessage(content="Translate the following into Spanish:\n\nHello world")]).content
+            ```
+    """
+    try:
+        prompt = f"Translate the following into {target_language}:\n\n{text}"
+        return ask_ai(ai_model, prompt)
+    except Exception as e:
+        raise EasyAIError(f"\n\n\nERROR: {e}") from None
