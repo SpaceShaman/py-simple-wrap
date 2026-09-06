@@ -1,4 +1,6 @@
 import pytest
+from py_simple_package.src.py_simple import pick_random_items as public_pick_random_items
+
 from py_simple_package.src.py_simple.easy_random import (
     roll_dice,
     flip_coin,
