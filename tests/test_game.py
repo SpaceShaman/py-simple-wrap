@@ -184,3 +184,17 @@ def test_draw_text_wraps_pygame_errors(monkeypatch):
         draw_text(SimpleNamespace(), "Hello", 0, 0)
 
     assert exc_info.value.__cause__ is None
+
+
+def test_easy_game_error_message():
+    """EasyGameError should store message and format string properly."""
+    err = EasyGameError("custom error message")
+    assert err.message == "custom error message"
+    assert str(err) == "custom error message"
+
+
+def test_allowed_keys_contains_pygame_key_constants():
+    """ALLOWED_KEYS should only contain attributes starting with K_."""
+    assert len(easy_game.ALLOWED_KEYS) > 0
+    assert all(k.startswith("K_") for k in easy_game.ALLOWED_KEYS)
+    assert "K_SPACE" in easy_game.ALLOWED_KEYS or "K_SPACE" in dir(easy_game.pygame)
