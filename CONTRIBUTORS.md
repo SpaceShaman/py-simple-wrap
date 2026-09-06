@@ -383,6 +383,12 @@ Every tile below is a real person who showed up for this project. 💛
         <sub><b>Larslllllll</b></sub>
       </a>
     </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/be-student">
+        <img src="https://github.com/be-student.png" width="100px;" alt="송은"/><br />
+        <sub><b>송은우</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
 
@@ -666,6 +672,7 @@ The Module Magicians. The Code Conjurers. The Test Sentinels. The Lore Keepers. 
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Gambit-Checkmate"><img src="https://github.com/Gambit-Checkmate.png?s=80" width="80px;" alt="Checkmate"/><br /><sub><b>Checkmate</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Gambit-Checkmate" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Gambit-Checkmate" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AhmadBilalDSA"><img src="https://github.com/AhmadBilalDSA.png?s=80" width="80px;" alt="Ahmad Bilal"/><br /><sub><b>Ahmad Bilal</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=AhmadBilalDSA" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=AhmadBilalDSA" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Larslllllll"><img src="https://github.com/Larslllllll.png?s=80" width="80px;" alt="Larslllllll"/><br /><sub><b>Larslllllll</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Larslllllll" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Larslllllll" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/be-student"><img src="https://github.com/be-student.png?s=80" width="80px;" alt="송은우"/><br /><sub><b>송은우</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=be-student" title="Tests">🧪</a></td>
     </tr>
   </tbody>
 </table>

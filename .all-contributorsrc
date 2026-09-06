@@ -501,6 +501,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "be-student",
+      "name": "송은우",
+      "avatar_url": "https://github.com/be-student.png",
+      "profile": "https://github.com/be-student",
+      "contributions": [
+        "test"
+      ]
     }
   ]
 }
