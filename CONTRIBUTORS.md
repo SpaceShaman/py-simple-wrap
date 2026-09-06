@@ -185,6 +185,12 @@ Every tile below is a real person who showed up for this project. 💛
         <sub><b>Ahmad Bilal</b></sub>
       </a>
     </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/VidyavathiGK">
+        <img src="https://github.com/VidyavathiGK.png" width="100px;" alt="VidyavathiGK"/><br />
+        <sub><b>Vidyavathi GK</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
 
