@@ -1,8 +1,11 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from py_simple.easy_ai import (
+  add-translate-text-function
     summarize_text,
     translate_text,
+    summarize_text, 
+  main
     get_model,
     ask_ai,
     ai_chat,
@@ -33,7 +36,7 @@ def test_summarize_text_error():
         summarize_text(mock_model, "Some text")
 
     assert "Model timeout" in str(exc_info.value)
-
+add-translate-text-function
 
 def test_translate_text():
     """Test that translate_text correctly returns model response content."""
@@ -46,8 +49,7 @@ def test_translate_text():
 
     assert result == "Hola mundo"
     mock_model.invoke.assert_called_once()
-
-
+    main
 @pytest.mark.parametrize(
     "text, expected",
     [
@@ -61,8 +63,8 @@ def test_translate_text():
 )
 def test_is_exit_command(text, expected):
     assert _is_exit_command(text) == expected
-
-
+ add-translate-text-function
+main
 def test_get_model_anthropic():
     with patch("langchain_anthropic.ChatAnthropic") as mock_cls:
         mock_cls.return_value = MagicMock()
@@ -92,8 +94,8 @@ def test_get_model_provider_case_insensitive():
 def test_get_model_unsupported_provider():
     with pytest.raises(EasyAIError):
         get_model("not-a-real-provider", "some-model")
-
-
+ add-translate-text-function
+ main
 def test_ask_ai_success():
     mock_model = MagicMock()
     mock_model.invoke.return_value = MagicMock(content="Hi there!")
@@ -111,8 +113,10 @@ def test_ask_ai_wraps_errors():
     with pytest.raises(EasyAIError) as exc_info:
         ask_ai(mock_model, "hello")
 
+ add-translate-text-function
     assert "boom" in str(exc_info.value)
-
+    assert "boom" in str(exc_info.value) 
+    main
 
 def test_ai_chat_exits_on_command(capsys):
     mock_model = MagicMock()

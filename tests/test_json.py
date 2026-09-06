@@ -4,6 +4,7 @@ import pytest
 from py_simple_package.src.py_simple.easy_json import (
     EasyJsonError,
     flatten_json,
+    get_json_keys,
     is_json_file,
     is_nested_json,
     open_json,
@@ -275,6 +276,30 @@ class TestEasyJson:
 
     def test_is_json_file_directory_is_not_a_file(self, tmp_path):
         assert is_json_file(str(tmp_path)) is False
+
+    def test_get_json_keys_with_dict(self):
+        data = {"name": "Sara", "active": True}
+
+        assert get_json_keys(data=data) == ["name", "active"]
+
+    def test_get_json_keys_with_filepath(self, tmp_path):
+        json_file = tmp_path / "sample.json"
+        json_file.write_text('{"name": "Sara", "role": "Maintainer"}',
+                             encoding="utf-8")
+
+        assert get_json_keys(filepath=str(json_file)) == ["name", "role"]
+
+    def test_get_json_keys_requires_one_input(self):
+        with pytest.raises(EasyJsonError) as exc_info:
+            get_json_keys()
+
+        assert "Either data or filepath" in str(exc_info.value)
+
+    def test_get_json_keys_rejects_non_dictionary_data(self):
+        with pytest.raises(EasyJsonError) as exc_info:
+            get_json_keys(data=["name", "role"])
+
+        assert "must be a dictionary" in str(exc_info.value)
 
 def test_get_nested_dict():
     data = {"a": {"b": {"c": 42}}}
