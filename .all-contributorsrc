@@ -508,6 +508,16 @@
       "avatar_url": "https://github.com/be-student.png",
       "profile": "https://github.com/be-student",
       "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "Cid-oe",
+      "name": "Cid-oe",
+      "avatar_url": "https://github.com/Cid-oe.png",
+      "profile": "https://github.com/Cid-oe",
+      "contributions": [
         "test"
       ]
     }
