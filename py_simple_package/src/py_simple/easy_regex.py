@@ -138,3 +138,44 @@ def extract_numbers(text: str) -> list | None:
     """
     pattern = r'[0-9]+'
     return re.findall(pattern, text)
+
+
+def extract_hex_colors(text: str) -> list | None:
+    r"""
+    Returns a list of CSS-style hexadecimal color codes found in the text.
+
+    Supports the 3, 4, 6, and 8 digit forms, including their leading `#`.
+
+    Arguments:
+        text (str): Text to search for hexadecimal color codes.
+
+    Returns:
+        list: All hexadecimal color codes found in the text. Empty list if
+            none are found.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import extract_hex_colors
+
+            result = extract_hex_colors("Use #fff on #1a2b3c")
+            # -> ['#fff', '#1a2b3c']
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import re
+
+            pattern = (
+                r'(?<![\\w#])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|'
+                r'[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\\b'
+            )
+            result = re.findall(pattern, "Use #fff on #1a2b3c")
+            # -> ['#fff', '#1a2b3c']
+            ```
+    """
+    pattern = (
+        r'(?<![\w#])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|'
+        r'[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b'
+    )
+    return re.findall(pattern, text)
