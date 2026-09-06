@@ -256,4 +256,38 @@ def retry(func, attempts=3, delay=1):
                 raise e
             time.sleep(delay)
     return None
+def run_py_string(code_string: str) -> None:
+    """
+    Executes a string of Python code in the current global scope,
+    saving you from writing temporary file creation boilerplate.
+
+    Args:
+        code_string (str): Valid Python code as a string to execute.
+
+    Returns:
+        None
+
+    Raises:
+        EasyFlowError: If executing the code string raises an exception.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import run_py_string
+
+            run_py_string("print('Hello from string!')")
+            ```
+
+        === "The Traditional Way"
+            ```python
+            try:
+                exec("print('Hello from string!')")
+            except Exception as e:
+                print(f"Execution failed: {e}")
+            ```
+    """
+    try:
+        exec(code_string)
+    except Exception as e:
+        raise EasyFlowError(f"\n\n\nERROR: {e}") from None
 

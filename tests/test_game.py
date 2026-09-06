@@ -13,6 +13,7 @@ from py_simple_package.src.py_simple.easy_game import (
     is_left_mouse_button_clicked,
     is_middle_mouse_button_clicked,
     is_right_mouse_button_clicked,
+    draw_text,
 )
 
 
@@ -127,3 +128,24 @@ def test_mouse_button_helpers_use_the_correct_button(
     monkeypatch.setattr(easy_game.pygame.mouse, "get_pressed", lambda: pressed)
 
     assert helper() is expected
+
+
+def test_draw_text_success(monkeypatch):
+    """Test that draw_text successfully initializes font, renders text, and blits to screen."""
+    calls = []
+    font_mock = SimpleNamespace(
+        render=lambda text, antialias, color: calls.append(("render", text, color)) or object()
+    )
+
+    monkeypatch.setattr(easy_game.pygame.font, "get_init", lambda: False)
+    monkeypatch.setattr(easy_game.pygame.font, "init", lambda: calls.append("font_init"))
+    monkeypatch.setattr(easy_game.pygame.font, "Font", lambda file, size: calls.append(("font_size", size)) or font_mock)
+
+    screen = SimpleNamespace(blit=lambda surf, dest: calls.append(("blit", dest)))
+
+    draw_text(screen, "Hello", 50, 100, 32, (255, 0, 0))
+
+    assert "font_init" in calls
+    assert ("font_size", 32) in calls
+    assert ("render", "Hello", (255, 0, 0)) in calls
+    assert ("blit", (50, 100)) in calls
