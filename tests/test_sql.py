@@ -2,7 +2,7 @@ import sqlite3
 
 import pytest
 
-from py_simple.easy_sql import (
+from py_simple_package.src.py_simple.easy_sql import (
     EasySqlError,
     conditional_run_select,
     delete_all_from_table,
