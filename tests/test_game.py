@@ -149,3 +149,38 @@ def test_draw_text_success(monkeypatch):
     assert ("font_size", 32) in calls
     assert ("render", "Hello", (255, 0, 0)) in calls
     assert ("blit", (50, 100)) in calls
+
+
+def test_draw_text_reuses_initialized_font(monkeypatch):
+    """An initialized font subsystem should not be initialized a second time."""
+    rendered = object()
+    blits = []
+    font = SimpleNamespace(render=lambda *_args: rendered)
+
+    monkeypatch.setattr(easy_game.pygame.font, "get_init", lambda: True)
+    monkeypatch.setattr(
+        easy_game.pygame.font,
+        "init",
+        lambda: pytest.fail("font.init should not be called when already initialized"),
+    )
+    monkeypatch.setattr(easy_game.pygame.font, "Font", lambda _file, _size: font)
+    screen = SimpleNamespace(blit=lambda surface, position: blits.append((surface, position)))
+
+    draw_text(screen, "Ready", 12, 34)
+
+    assert blits == [(rendered, (12, 34))]
+
+
+def test_draw_text_wraps_pygame_errors(monkeypatch):
+    """Font or rendering failures should use the module's consistent exception."""
+    monkeypatch.setattr(easy_game.pygame.font, "get_init", lambda: True)
+
+    def fail_to_create_font(_file, _size):
+        raise RuntimeError("font unavailable")
+
+    monkeypatch.setattr(easy_game.pygame.font, "Font", fail_to_create_font)
+
+    with pytest.raises(EasyGameError, match="font unavailable") as exc_info:
+        draw_text(SimpleNamespace(), "Hello", 0, 0)
+
+    assert exc_info.value.__cause__ is None
