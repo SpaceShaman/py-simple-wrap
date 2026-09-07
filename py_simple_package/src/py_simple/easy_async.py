@@ -153,3 +153,47 @@ def run_at_the_same_time_with_params(functions_and_args: list[tuple]) \
         return results
     except Exception as e:
         raise EasyAsyncError(f"\n\n\nERROR: {e}") from None
+def run_with_timeout(func, timeout: float, *args) -> tuple:
+    """
+    Runs a function asynchronously with a timeout limit.
+
+    Raises EasyAsyncError if the function times out or raises an exception.
+
+    Args:
+        func (callable): The function to execute.
+        timeout (float): Maximum time to wait in seconds.
+        *args: Positional arguments to pass to the function.
+
+    Returns:
+        tuple: A tuple containing `(func.__name__, result)`.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import run_with_timeout
+
+            def slow_add(a, b):
+                return a + b
+
+            run_with_timeout(slow_add, 2.0, 3, 5)  # -> ("slow_add", 8)
+            ```
+
+        === "The Traditional Way"
+            ```python
+            from concurrent.futures import ThreadPoolExecutor
+
+            def slow_add(a, b):
+                return a + b
+
+            with ThreadPoolExecutor() as executor:
+                future = executor.submit(slow_add, 3, 5)
+                result = future.result(timeout=2.0)
+            ```
+    """
+    try:
+        with ThreadPoolExecutor() as executor:
+            future = executor.submit(func, *args)
+            result = future.result(timeout=timeout)
+            return (func.__name__, result)
+    except Exception as e:
+        raise EasyAsyncError(f"\n\n\nERROR: {e}") from None
