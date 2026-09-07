@@ -93,6 +93,48 @@ def to_kebab_case(text: str) -> str:
     return cleaned_text.lower().replace(" ", "-")
 
 
+def to_title_case(text: str) -> str:
+    """
+    Converts text to Title Case, where the first letter of each word
+    is capitalized and the rest are lowercased. Preserves apostrophes so
+    contractions like "don't" stay intact.
+
+    Args:
+        text (str): Text to convert.
+
+    Returns:
+        str: Text converted to Title Case.
+
+    Example:
+        === "The Py_simple Way"
+```python
+            from py_simple import to_title_case
+            result = to_title_case("hello world")  # -> "Hello World"
+```
+        === "The Traditional Way"
+```python
+            text = "hello world"
+            result = " ".join(word.capitalize() for word in text.split())
+```
+    """
+    # Same normalization pipeline as _separate_words, but preserve
+    # apostrophes so contractions like "don't" survive.
+    text = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", text)
+    text = re.sub(r"[_\-]+", " ", text)
+    text = re.sub(r"[^\w\s']", " ", text)
+    text = remove_extra_spaces(text)
+
+    result_words = []
+    for word in text.split():
+        capitalized_word = word
+        for i, character in enumerate(word):
+            if character.isalpha():
+                capitalized_word = word[:i] + character.upper() + word[i + 1:].lower()
+                break
+        result_words.append(capitalized_word)
+    return " ".join(result_words)
+
+
 def is_palindrome(text: str) -> bool:
     """
     Returns True when text reads the same forwards and backwards.
@@ -200,3 +242,11 @@ def _separate_words(text: str) -> str:
     text = re.sub(r"[_\-]+", " ", text)
     text = re.sub(r"[^\w\s]", " ", text)
     return remove_extra_spaces(text)
+
+
+def _capitalize_word(word: str) -> str:
+    """Uppercases the first alphabetic character, lowercases the rest."""
+    for i, character in enumerate(word):
+        if character.isalpha():
+            return word[:i] + character.upper() + word[i + 1:].lower()
+    return word

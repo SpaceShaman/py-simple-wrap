@@ -91,6 +91,46 @@ def pick_random_item(items: Sequence[Any]) -> Any:
     return random.choice(items)
 
 
+def pick_random_items(items: Sequence[Any], count: int) -> List[Any]:
+    """
+    Picks several unique positions from a list or tuple without changing it.
+
+    Args:
+        items (Sequence[Any]): The collection to pick from.
+        count (int): Number of items to pick.
+
+    Returns:
+        List[Any]: A new list containing the selected items.
+
+    Raises:
+        ValueError: If count is not a whole number from zero through the
+            number of available items.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import pick_random_items
+
+            winners = pick_random_items(["Ada", "Lin", "Sam"], 2)
+            # -> e.g. ['Lin', 'Ada']
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import random
+
+            winners = random.sample(["Ada", "Lin", "Sam"], k=2)
+            ```
+    """
+    if not isinstance(count, int) or isinstance(count, bool):
+        raise ValueError("count must be a whole number.")
+    if count < 0 or count > len(items):
+        raise ValueError(
+            f"count must be between 0 and the number of items ({len(items)})."
+        )
+    return random.sample(items, k=count)
+
+
 def shuffle_list(items: Sequence[Any]) -> List[Any]:
     """
     Returns a new list with the items shuffled in random order.

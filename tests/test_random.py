@@ -1,8 +1,11 @@
 import pytest
-from py_simple.easy_random import (
+from py_simple_package.src.py_simple import pick_random_items as public_pick_random_items
+
+from py_simple_package.src.py_simple.easy_random import (
     roll_dice,
     flip_coin,
     pick_random_item,
+    pick_random_items,
     shuffle_list,
     random_int,
 )
@@ -29,6 +32,32 @@ def test_pick_random_item():
 
     with pytest.raises(ValueError):
         pick_random_item([])
+
+
+def test_pick_random_items(monkeypatch):
+    items = ["Ada", "Lin", "Sam"]
+    received = {}
+
+    def fake_sample(population, k):
+        received.update(population=population, count=k)
+        return list(population)[:k]
+
+    monkeypatch.setattr("py_simple.easy_random.random.sample", fake_sample)
+
+    assert pick_random_items(items, 2) == ["Ada", "Lin"]
+    assert received == {"population": items, "count": 2}
+    assert items == ["Ada", "Lin", "Sam"]
+    assert pick_random_items(items, 0) == []
+
+
+@pytest.mark.parametrize("count", [-1, 4, 1.5, True])
+def test_pick_random_items_rejects_invalid_count(count):
+    with pytest.raises(ValueError, match="count must be"):
+        pick_random_items(["Ada", "Lin", "Sam"], count)
+
+
+def test_pick_random_items_is_available_from_public_api():
+    assert public_pick_random_items is pick_random_items
 
 
 def test_shuffle_list():
