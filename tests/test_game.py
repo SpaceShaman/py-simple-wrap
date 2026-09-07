@@ -132,7 +132,6 @@ def test_mouse_button_helpers_use_the_correct_button(
     assert helper() is expected
 
 
- feat/add-fill-background
 def test_fill_background(monkeypatch):
     """Filling the background should call surface fill and wrap errors."""
     screen = SimpleNamespace(fill=lambda color: None)
@@ -147,6 +146,8 @@ def test_fill_background(monkeypatch):
     bad_screen = SimpleNamespace(fill=fail_fill)
     with pytest.raises(EasyGameError, match="surface error"):
         fill_background(bad_screen, (255, 0, 0))
+
+
 def test_draw_text_success(monkeypatch):
     """Test that draw_text successfully initializes font, renders text, and blits to screen."""
     calls = []
@@ -215,4 +216,3 @@ def test_allowed_keys_contains_pygame_key_constants():
     assert len(easy_game.ALLOWED_KEYS) > 0
     assert all(k.startswith("K_") for k in easy_game.ALLOWED_KEYS)
     assert "K_SPACE" in easy_game.ALLOWED_KEYS or "K_SPACE" in dir(easy_game.pygame)
- main
