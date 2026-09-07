@@ -3,7 +3,9 @@ import pytest
 
 from py_simple_package.src.py_simple.easy_json import (
     EasyJsonError,
+    compare_json,
     flatten_json,
+    get_json_keys,
     is_json_file,
     is_nested_json,
     open_json,
@@ -276,6 +278,30 @@ class TestEasyJson:
     def test_is_json_file_directory_is_not_a_file(self, tmp_path):
         assert is_json_file(str(tmp_path)) is False
 
+    def test_get_json_keys_with_dict(self):
+        data = {"name": "Sara", "active": True}
+
+        assert get_json_keys(data=data) == ["name", "active"]
+
+    def test_get_json_keys_with_filepath(self, tmp_path):
+        json_file = tmp_path / "sample.json"
+        json_file.write_text('{"name": "Sara", "role": "Maintainer"}',
+                             encoding="utf-8")
+
+        assert get_json_keys(filepath=str(json_file)) == ["name", "role"]
+
+    def test_get_json_keys_requires_one_input(self):
+        with pytest.raises(EasyJsonError) as exc_info:
+            get_json_keys()
+
+        assert "Either data or filepath" in str(exc_info.value)
+
+    def test_get_json_keys_rejects_non_dictionary_data(self):
+        with pytest.raises(EasyJsonError) as exc_info:
+            get_json_keys(data=["name", "role"])
+
+        assert "must be a dictionary" in str(exc_info.value)
+
 def test_get_nested_dict():
     data = {"a": {"b": {"c": 42}}}
     assert get_nested(data, "a.b.c") == 42
@@ -303,3 +329,64 @@ def test_get_nested_stops_when_path_continues_past_scalar():
     data = {"user": {"name": "Alice"}}
 
     assert get_nested(data, "user.name.first", "missing") == "missing"
+
+
+def test_compare_json_added_keys():
+    result = compare_json(
+        data1={"name": "Sara"},
+        data2={"name": "Sara", "city": "NYC"}
+    )
+    assert result["added"] == {"city": "NYC"}
+    assert result["removed"] == {}
+    assert result["changed"] == {}
+
+def test_compare_json_removed_keys():
+    result = compare_json(
+        data1={"name": "Sara", "age": 25},
+        data2={"name": "Sara"}
+    )
+    assert result["removed"] == {"age": 25}
+    assert result["added"] == {}
+
+def test_compare_json_changed_values():
+    result = compare_json(
+        data1={"name": "Sara", "age": 25},
+        data2={"name": "Sara", "age": 26}
+    )
+    assert result["changed"] == {"age": (25, 26)}
+    assert result["added"] == {}
+    assert result["removed"] == {}
+
+def test_compare_json_nested():
+    result = compare_json(
+        data1={"user": {"name": "Sara", "age": 25}},
+        data2={"user": {"name": "Sara", "age": 26, "city": "NYC"}}
+    )
+    assert result["added"] == {"user.city": "NYC"}
+    assert result["removed"] == {}
+    assert result["changed"] == {"user.age": (25, 26)}
+
+def test_compare_json_no_differences():
+    result = compare_json(
+        data1={"name": "Sara", "nested": {"a": 1, "b": 2}},
+        data2={"name": "Sara", "nested": {"a": 1, "b": 2}}
+    )
+    assert result["added"] == {}
+    assert result["removed"] == {}
+    assert result["changed"] == {}
+
+def test_compare_json_lists():
+    result = compare_json(
+        data1=[1, 2, 3],
+        data2=[1, 2, 4, 5]
+    )
+    assert result["changed"] == {"[2]": (3, 4)}
+    assert result["added"] == {"[3]": 5}
+    assert result["removed"] == {}
+
+def test_compare_json_invalid_input_raises():
+    with pytest.raises(EasyJsonError):
+        compare_json(data1="not a dict", data2={"key": "value"})
+
+    with pytest.raises(EasyJsonError):
+        compare_json(data1={"key": "value"}, data2="not a dict")

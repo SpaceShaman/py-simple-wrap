@@ -2,10 +2,13 @@ from py_simple_package.src.py_simple.easy_regex import (
     extract_emails,
     extract_urls,
     extract_number_sequences,
-    extract_numbers
+    extract_numbers,
+    extract_hex_colors,
 )
 
 import pytest
+
+from py_simple_package.src.py_simple import extract_hex_colors as public_extract_hex_colors
 
 # email test
 @pytest.mark.parametrize(
@@ -64,3 +67,21 @@ def test_is_number_sequence_extracted(input_text, expected):
 
 def test_is_number_extracted(input_text,expected):
     assert extract_numbers(input_text) == expected
+
+
+@pytest.mark.parametrize(
+    "input_text, expected",
+    [
+        ("Use #fff on #1a2b3c", ["#fff", "#1a2b3c"]),
+        ("Alpha colors: #abcd and #12345678", ["#abcd", "#12345678"]),
+        ("Case is preserved: #Aa00Ff", ["#Aa00Ff"]),
+        ("Ignore #12, #12345, #ggg, and abc#fff", []),
+        ("No colors here", []),
+    ],
+)
+def test_hex_colors_are_extracted(input_text, expected):
+    assert extract_hex_colors(input_text) == expected
+
+
+def test_extract_hex_colors_is_available_from_public_api():
+    assert public_extract_hex_colors is extract_hex_colors

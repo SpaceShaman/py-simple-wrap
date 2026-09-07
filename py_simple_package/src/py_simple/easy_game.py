@@ -224,6 +224,7 @@ def is_right_mouse_button_clicked() -> bool:
             ```
     """
     return pygame.mouse.get_pressed()[2]
+ feat/add-fill-background
 def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
     """
     Fills the entire game screen with a solid background color,
@@ -234,27 +235,63 @@ def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
         color (tuple, optional): RGB tuple for the background color.
             Defaults to black `(0, 0, 0)`.
 
+
+def draw_text(screen: pygame.Surface, text: str, x: int, y: int, font_size: int = 24,
+              color: tuple = (255, 255, 255)) -> None:
+    """
+    Draws a text string onto the game screen at the specified coordinates,
+    saving you from writing font initialization and rendering boilerplate.
+
+    Args:
+        screen (pygame.Surface): The pygame surface to draw the text onto.
+        text (str): The text string to display.
+        x (int): X-coordinate of the text position.
+        y (int): Y-coordinate of the text position.
+        font_size (int, optional): Size of the font. Defaults to 24.
+        color (tuple, optional): RGB tuple for text color. Defaults to white `(255, 255, 255)`.
+ main
+
     Returns:
         None
 
     Example:
         === "The Py_simple Way"
             ```python
+ feat/add-fill-background
             from py_simple import basic_game_setup, fill_background
 
             screen, clock = basic_game_setup(800, 600)
             fill_background(screen, (30, 30, 30))
+            from py_simple import basic_game_setup, draw_text
+
+            screen, clock = basic_game_setup(800, 600)
+            draw_text(screen, "Hello World", 100, 100, 32, (0, 255, 0))
+            main
             ```
 
         === "The Traditional Way"
             ```python
             import pygame
 
+ feat/add-fill-background
             screen = pygame.display.set_mode((800, 600))
             screen.fill((30, 30, 30))
             ```
     """
     try:
         screen.fill(color)
+            pygame.font.init()
+            font = pygame.font.Font(None, 32)
+            text_surface = font.render("Hello World", True, (0, 255, 0))
+            screen.blit(text_surface, (100, 100))
+            ```
+    """
+    try:
+        if not pygame.font.get_init():
+            pygame.font.init()
+        font = pygame.font.Font(None, font_size)
+        text_surface = font.render(text, True, color)
+        screen.blit(text_surface, (x, y))
+ main
     except Exception as e:
         raise EasyGameError(f"\n\n\nERROR: {e}") from None
