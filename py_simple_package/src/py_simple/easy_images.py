@@ -67,6 +67,52 @@ def resize_image(input_path: str, output_path: str, width: int, height: int):
         img.resize((width, height)).save(output_path)
 
 
+def create_thumbnail(
+    input_path: str, output_path: str, max_width: int, max_height: int
+):
+    """
+    Create a thumbnail that fits within the given dimensions.
+
+    The image keeps its original aspect ratio and is never enlarged.
+
+    Args:
+        input_path (str): Path of the source image.
+        output_path (str): Path to save the thumbnail to.
+        max_width (int): Maximum thumbnail width in pixels.
+        max_height (int): Maximum thumbnail height in pixels.
+
+    Raises:
+        ValueError: If either maximum dimension is not a positive integer.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import create_thumbnail
+
+            create_thumbnail("photo.jpg", "thumbnail.jpg", 320, 320)
+            ```
+
+        === "The Traditional Way"
+            ```python
+            from PIL import Image
+
+            with Image.open("photo.jpg") as img:
+                img.thumbnail((320, 320))
+                img.save("thumbnail.jpg")
+            ```
+    """
+    dimensions = (max_width, max_height)
+    if any(
+        not isinstance(value, int) or isinstance(value, bool) or value < 1
+        for value in dimensions
+    ):
+        raise ValueError("Maximum width and height must be positive integers.")
+
+    with _open_image(input_path) as img:
+        img.thumbnail((max_width, max_height))
+        img.save(output_path)
+
+
 def convert_image(input_path: str, output_path: str):
     """
     Convert an image to a different format based on the output file's
