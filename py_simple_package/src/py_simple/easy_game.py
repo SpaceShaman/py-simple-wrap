@@ -224,3 +224,37 @@ def is_right_mouse_button_clicked() -> bool:
             ```
     """
     return pygame.mouse.get_pressed()[2]
+def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
+    """
+    Fills the entire game screen with a solid background color,
+    saving you from writing screen clearing boilerplate every frame.
+
+    Args:
+        screen (pygame.Surface): The pygame surface to fill.
+        color (tuple, optional): RGB tuple for the background color.
+            Defaults to black `(0, 0, 0)`.
+
+    Returns:
+        None
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import basic_game_setup, fill_background
+
+            screen, clock = basic_game_setup(800, 600)
+            fill_background(screen, (30, 30, 30))
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import pygame
+
+            screen = pygame.display.set_mode((800, 600))
+            screen.fill((30, 30, 30))
+            ```
+    """
+    try:
+        screen.fill(color)
+    except Exception as e:
+        raise EasyGameError(f"\n\n\nERROR: {e}") from None
