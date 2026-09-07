@@ -10,6 +10,7 @@ from py_simple_package.src.py_simple.easy_generator import (
     generate_password,
     generate_qr_code,
     generate_uuid,
+    generate_slug,
 )
 
 
@@ -81,6 +82,37 @@ def test_generate_password_no_adjacent_duplicates(length):
         for first, second in zip(password, password[1:])
     )
 
+
+@pytest.mark.parametrize(
+    "text, expected_slug",
+    [
+        ("Hello World", "hello-world"),
+        ("Fiancé", "fiance"),
+        ("What_a!string  name ", "what-a-string-name"),
+        ("   spaces at start", "spaces-at-start"),
+        ("test-slug", "test-slug"),
+    ],
+)
+def test_generate_slug_passing(text, expected_slug):
+    actual_slug = generate_slug(text)
+
+    assert actual_slug == expected_slug
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "",
+        "  ",
+        "!!!",
+        None,
+        456,
+        -421.99,
+    ],
+)
+def test_generate_slug_rejects_invalid_string(text):
+    with pytest.raises(EasyGeneratorError):
+        generate_slug(text)
 
 @pytest.mark.parametrize(
     "data",
