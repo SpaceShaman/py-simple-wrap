@@ -11,23 +11,22 @@ ALLOWED_KEYS = [i for i in dir(pygame) if i.startswith("K_")]
 
 class EasyGameError(Exception):
     """
-        Raised when a pygame window/game can't be set up.
+    Raised when a pygame window/game can't be set up.
 
-        Wraps whatever pygame raises internally (bad dimensions, display
-        driver issues, etc.) so py_simple functions can fail with one
-        consistent, easy-to-read exception instead of a random builtin
-        or pygame-specific one.
+    Wraps whatever pygame raises internally (bad dimensions, display
+    driver issues, etc.) so py_simple functions can fail with one
+    consistent, easy-to-read exception instead of a random builtin
+    or pygame-specific one.
 
-        Args:
-            message (str): Human-readable description of what went wrong.
+    Args:
+        message (str): Human-readable description of what went wrong.
     """
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
 
 
-def basic_game_setup(width: int, height: int, title: str ="My Game") -> (
-        tuple):
+def basic_game_setup(width: int, height: int, title: str = "My Game") -> tuple:
     """
     Sets up a pygame window and clock in one call, handling the
     pygame.init(), display, caption, and clock boilerplate every
@@ -226,6 +225,42 @@ def is_right_mouse_button_clicked() -> bool:
     return pygame.mouse.get_pressed()[2]
 
 
+def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
+    """
+    Fills the entire game screen with a solid background color,
+    saving you from writing screen clearing boilerplate every frame.
+
+    Args:
+        screen (pygame.Surface): The pygame surface to fill.
+        color (tuple, optional): RGB tuple for the background color. 
+            Defaults to black `(0, 0, 0)`.
+
+    Returns:
+        None
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import basic_game_setup, fill_background
+
+            screen, clock = basic_game_setup(800, 600)
+            fill_background(screen, (30, 30, 30))
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import pygame
+
+            screen = pygame.display.set_mode((800, 600))
+            screen.fill((30, 30, 30))
+            ```
+    """
+    try:
+        screen.fill(color)
+    except Exception as e:
+        raise EasyGameError(f"\n\n\nERROR: {e}") from None
+
+
 def draw_text(screen: pygame.Surface, text: str, x: int, y: int, font_size: int = 24,
               color: tuple = (255, 255, 255)) -> None:
     """
@@ -252,7 +287,7 @@ def draw_text(screen: pygame.Surface, text: str, x: int, y: int, font_size: int 
             draw_text(screen, "Hello World", 100, 100, 32, (0, 255, 0))
             ```
 
-        === "The Traditional Way"
+        === "The TraditionalWay"
             ```python
             import pygame
 

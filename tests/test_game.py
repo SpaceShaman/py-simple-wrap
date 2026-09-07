@@ -2,6 +2,7 @@
 
 from types import SimpleNamespace
 
+import pygame
 import pytest
 
 from py_simple_package.src.py_simple import easy_game
@@ -9,6 +10,7 @@ from py_simple_package.src.py_simple.easy_game import (
     EasyGameError,
     basic_game_setup,
     check_if_quit,
+    fill_background,
     get_mouse_position,
     is_left_mouse_button_clicked,
     is_middle_mouse_button_clicked,
@@ -122,12 +124,28 @@ def test_get_mouse_position_returns_pygame_position(monkeypatch):
     ],
 )
 def test_mouse_button_helpers_use_the_correct_button(
-    monkeypatch, helper, pressed, expected
+        monkeypatch, helper, pressed, expected
 ):
     """Each mouse helper should read only its corresponding pygame button."""
     monkeypatch.setattr(easy_game.pygame.mouse, "get_pressed", lambda: pressed)
 
     assert helper() is expected
+
+
+def test_fill_background(monkeypatch):
+    """Filling the background should call surface fill and wrap errors."""
+    screen = SimpleNamespace(fill=lambda color: None)
+
+    # Test valid fill
+    fill_background(screen, (255, 0, 0))
+
+    # Test error handling when fill fails or surface is invalid
+    def fail_fill(_color):
+        raise RuntimeError("surface error")
+
+    bad_screen = SimpleNamespace(fill=fail_fill)
+    with pytest.raises(EasyGameError, match="surface error"):
+        fill_background(bad_screen, (255, 0, 0))
 
 
 def test_draw_text_success(monkeypatch):
