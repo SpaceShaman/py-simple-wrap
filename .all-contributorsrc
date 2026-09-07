@@ -509,7 +509,8 @@
       "profile": "https://github.com/be-student",
       "contributions": [
         "test",
-        "code"
+        "code",
+        "bug"
       ]
     },
     {
@@ -519,6 +520,17 @@
       "profile": "https://github.com/Cid-oe",
       "contributions": [
         "test"
+      ]
+    },
+    {
+      "login": "BirgirSJakobsson",
+      "name": "Birgir Sveinn Jakobsson",
+      "avatar_url": "https://github.com/BirgirSJakobsson.png",
+      "profile": "https://github.com/BirgirSJakobsson",
+      "contributions": [
+        "test",
+        "documentation",
+        "code"
       ]
     }
   ]

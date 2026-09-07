@@ -191,6 +191,12 @@ Every tile below is a real person who showed up for this project. 💛
         <sub><b>Vidyavathi GK</b></sub>
       </a>
     </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/BirgirSJakobsson">
+        <img src="https://github.com/BirgirSJakobsson.png" width="100px;" alt="Birgir Sveinn Jakobsson"/><br />
+        <sub><b>Birgir Sveinn Jakobsson</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
 
@@ -397,6 +403,12 @@ Every tile below is a real person who showed up for this project. 💛
         <sub><b>Cid-oe</b></sub>
       </a>
     </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/BirgirSJakobsson">
+        <img src="https://github.com/BirgirSJakobsson.png" width="100px;" alt="Birgir Sveinn Jakobsson"/><br />
+        <sub><b>Birgir Sveinn Jakobsson</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
 
@@ -499,6 +511,12 @@ Every tile below is a real person who showed up for this project. 💛
       <a href="https://github.com/ohnsh">
         <img src="https://github.com/ohnsh.png" width="100px;" alt="ohnsh"/><br />
         <sub><b>John Sherrell</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/BirgirSJakobsson">
+        <img src="https://github.com/BirgirSJakobsson .png" width="100px;" alt="Birgir Sveinn Jakobsson"/><br />
+        <sub><b>Birgir Sveinn Jakobsson</b></sub>
       </a>
     </td>
   </tr>
@@ -686,8 +704,9 @@ The Module Magicians. The Code Conjurers. The Test Sentinels. The Lore Keepers. 
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Gambit-Checkmate"><img src="https://github.com/Gambit-Checkmate.png?s=80" width="80px;" alt="Checkmate"/><br /><sub><b>Checkmate</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Gambit-Checkmate" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Gambit-Checkmate" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AhmadBilalDSA"><img src="https://github.com/AhmadBilalDSA.png?s=80" width="80px;" alt="Ahmad Bilal"/><br /><sub><b>Ahmad Bilal</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=AhmadBilalDSA" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=AhmadBilalDSA" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Larslllllll"><img src="https://github.com/Larslllllll.png?s=80" width="80px;" alt="Larslllllll"/><br /><sub><b>Larslllllll</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Larslllllll" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=Larslllllll" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/be-student"><img src="https://github.com/be-student.png?s=80" width="80px;" alt="송은우"/><br /><sub><b>송은우</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=be-student" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=be-student" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/be-student"><img src="https://github.com/be-student.png?s=80" width="80px;" alt="송은우"/><br /><sub><b>송은우</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=be-student" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=be-student" title="Code">💻</a> <a href="https://github.com/sara-czasak/py_simple/issues?q=author%3Abe-student" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Cid-oe"><img src="https://github.com/Cid-oe.png?s=80" width="80px;" alt="Cid-oe"/><br /><sub><b>Cid-oe</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Cid-oe" title="Tests">🧪</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/BirgirSJakobsson"><img src="https://github.com/BirgirSJakobsson.png?s=80" width="80px;" alt="Birgir Sveinn Jakobsson"/><br /><sub><b>Birgir Sveinn Jakobsson</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=BirgirSJakobsson" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=BirgirSJakobsson" title="Docs">📖</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=BirgirSJakobsson" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
