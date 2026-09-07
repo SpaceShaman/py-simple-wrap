@@ -7,6 +7,7 @@ from py_simple_package.src.py_simple.easy_strings import (
     remove_extra_spaces,
     to_kebab_case,
     to_snake_case,
+    to_title_case,
 )
 
 
@@ -100,3 +101,24 @@ def test_is_alphanumeric(text, expected):
 )
 def test_count_words(text, expected):
     assert count_words(text) == expected
+    
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("hello world", "Hello World"),
+        ("HELLO WORLD", "Hello World"),
+        ("hello_world", "Hello World"),
+        ("hello-world", "Hello World"),
+        ("helloWorldFromPython", "Hello World From Python"),
+        ("don't stop", "Don't Stop"),
+        ("y'all can't", "Y'all Can't"),
+        ("'quoted text'", "'Quoted Text'"),
+        ("Python 3 Basics", "Python 3 Basics"),
+        ("  multiple   spaces  ", "Multiple Spaces"),
+        ("", ""),
+        ("   ", ""),
+    ],
+)
+def test_to_title_case(text, expected):
+    assert to_title_case(text) == expected
