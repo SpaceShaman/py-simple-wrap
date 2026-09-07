@@ -231,3 +231,43 @@ def divisors(n: int) -> list:
     small = [number for number in range(1, int(math.sqrt(n)) + 1) if n % number == 0]
     large = [n // number for number in reversed(small) if n // number != number]
     return small + large
+
+
+def is_perfect_square(n: int) -> bool:
+    """
+    Returns whether a non-negative integer is a perfect square.
+
+    A perfect square is an integer that can be written as another
+    integer multiplied by itself, such as 0, 1, 4, 9, or 16.
+
+    Args:
+        n (int): Non-negative integer to check.
+
+    Returns:
+        bool: True if n is a perfect square, otherwise False.
+
+    Raises:
+        ValueError: If n is negative or not an integer.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import is_perfect_square
+
+            result = is_perfect_square(49)  # -> True
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import math
+
+            n = 49
+            root = math.isqrt(n)
+            result = root * root == n
+            ```
+    """
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("'n' must be a non-negative integer.")
+
+    root = math.isqrt(n)
+    return root * root == n
