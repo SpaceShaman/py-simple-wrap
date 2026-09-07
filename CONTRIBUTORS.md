@@ -529,7 +529,7 @@ Every tile below is a real person who showed up for this project. 💛
     </td>
     <td align="center" valign="top" width="8.6%">
       <a href="https://github.com/BirgirSJakobsson">
-        <img src="https://github.com/BirgirSJakobsson .png" width="100px;" alt="Birgir Sveinn Jakobsson"/><br />
+        <img src="https://github.com/BirgirSJakobsson.png" width="100px;" alt="Birgir Sveinn Jakobsson"/><br />
         <sub><b>Birgir Sveinn Jakobsson</b></sub>
       </a>
     </td>
