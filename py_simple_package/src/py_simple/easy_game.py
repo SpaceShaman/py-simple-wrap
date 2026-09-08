@@ -72,7 +72,7 @@ def basic_game_setup(width: int, height: int, title: str = "My Game") -> tuple:
         clock = pygame.time.Clock()
         return screen, clock
     except Exception as e:
-        raise EasyGameError(f"\n\n\nERROR: {e}") from None
+        raise EasyGameError(str(e)) from None
 
 
 def check_if_quit() -> bool:
@@ -232,7 +232,7 @@ def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
 
     Args:
         screen (pygame.Surface): The pygame surface to fill.
-        color (tuple, optional): RGB tuple for the background color. 
+        color (tuple, optional): RGB tuple for the background color.
             Defaults to black `(0, 0, 0)`.
 
     Returns:
@@ -258,50 +258,48 @@ def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
     try:
         screen.fill(color)
     except Exception as e:
-        raise EasyGameError(f"\n\n\nERROR: {e}") from None
+        raise EasyGameError(str(e)) from None
 
 
-def draw_text(screen: pygame.Surface, text: str, x: int, y: int, font_size: int = 24,
-              color: tuple = (255, 255, 255)) -> None:
+def is_key_pressed(key_name: str) -> bool:
     """
-    Draws a text string onto the game screen at the specified coordinates,
-    saving you from writing font initialization and rendering boilerplate.
+    Checks whether a specific keyboard key is currently held down,
+    saving you from remembering key constant imports and state arrays.
 
     Args:
-        screen (pygame.Surface): The pygame surface to draw the text onto.
-        text (str): The text string to display.
-        x (int): X-coordinate of the text position.
-        y (int): Y-coordinate of the text position.
-        font_size (int, optional): Size of the font. Defaults to 24.
-        color (tuple, optional): RGB tuple for text color. Defaults to white `(255, 255, 255)`.
+        key_name (str): The name of the key (e.g., `"SPACE"`, `"RETURN"`, `"UP"`).
 
     Returns:
-        None
+        bool: `True` if the specified key is being pressed, `False` otherwise.
+
+    Raises:
+        EasyGameError: If an invalid key name is provided.
 
     Example:
         === "The Py_simple Way"
             ```python
-            from py_simple import basic_game_setup, draw_text
+            from py_simple import is_key_pressed
 
-            screen, clock = basic_game_setup(800, 600)
-            draw_text(screen, "Hello World", 100, 100, 32, (0, 255, 0))
+            if is_key_pressed("SPACE"):
+                print("Spacebar held down!")
             ```
 
-        === "The TraditionalWay"
+        === "The Traditional Way"
             ```python
             import pygame
 
-            pygame.font.init()
-            font = pygame.font.Font(None, 32)
-            text_surface = font.render("Hello World", True, (0, 255, 0))
-            screen.blit(text_surface, (100, 100))
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_SPACE]:
+                print("Spacebar held down!")
             ```
     """
     try:
-        if not pygame.font.get_init():
-            pygame.font.init()
-        font = pygame.font.Font(None, font_size)
-        text_surface = font.render(text, True, color)
-        screen.blit(text_surface, (x, y))
+        full_key_name = f"K_{key_name.upper()}"
+        if not hasattr(pygame, full_key_name):
+            raise EasyGameError(f"Invalid key name: '{key_name}'")
+        key_constant = getattr(pygame, full_key_name)
+        return bool(pygame.key.get_pressed()[key_constant])
     except Exception as e:
-        raise EasyGameError(f"\n\n\nERROR: {e}") from None
+        if isinstance(e, EasyGameError):
+            raise
+        raise EasyGameError(str(e)) from None

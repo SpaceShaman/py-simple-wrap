@@ -15,6 +15,8 @@ from py_simple_package.src.py_simple.easy_game import (
     is_left_mouse_button_clicked,
     is_middle_mouse_button_clicked,
     is_right_mouse_button_clicked,
+    add-is-key-pressed-function
+    is_key_pressed,
     draw_text,
 )
 
