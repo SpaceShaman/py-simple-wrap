@@ -126,12 +126,7 @@ def to_title_case(text: str) -> str:
 
     result_words = []
     for word in text.split():
-        capitalized_word = word
-        for i, character in enumerate(word):
-            if character.isalpha():
-                capitalized_word = word[:i] + character.upper() + word[i + 1:].lower()
-                break
-        result_words.append(capitalized_word)
+        result_words.append(_capitalize_word(word))
     return " ".join(result_words)
 
 
