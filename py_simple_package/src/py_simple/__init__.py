@@ -120,3 +120,6 @@ from .easy_archive import (
 from .easy_config import (
     gh_workflow_config,
 )
+from .easy_ai import (
+    ask_ai, summarize_text, translate_text,
+)
