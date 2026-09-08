@@ -11,23 +11,22 @@ ALLOWED_KEYS = [i for i in dir(pygame) if i.startswith("K_")]
 
 class EasyGameError(Exception):
     """
-        Raised when a pygame window/game can't be set up.
+    Raised when a pygame window/game can't be set up.
 
-        Wraps whatever pygame raises internally (bad dimensions, display
-        driver issues, etc.) so py_simple functions can fail with one
-        consistent, easy-to-read exception instead of a random builtin
-        or pygame-specific one.
+    Wraps whatever pygame raises internally (bad dimensions, display
+    driver issues, etc.) so py_simple functions can fail with one
+    consistent, easy-to-read exception instead of a random builtin
+    or pygame-specific one.
 
-        Args:
-            message (str): Human-readable description of what went wrong.
+    Args:
+        message (str): Human-readable description of what went wrong.
     """
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
 
 
-def basic_game_setup(width: int, height: int, title: str ="My Game") -> (
-        tuple):
+def basic_game_setup(width: int, height: int, title: str = "My Game") -> tuple:
     """
     Sets up a pygame window and clock in one call, handling the
     pygame.init(), display, caption, and clock boilerplate every
@@ -73,7 +72,7 @@ def basic_game_setup(width: int, height: int, title: str ="My Game") -> (
         clock = pygame.time.Clock()
         return screen, clock
     except Exception as e:
-        raise EasyGameError(f"\n\n\nERROR: {e}") from None
+        raise EasyGameError(str(e)) from None
 
 
 def check_if_quit() -> bool:
@@ -224,6 +223,8 @@ def is_right_mouse_button_clicked() -> bool:
             ```
     """
     return pygame.mouse.get_pressed()[2]
+
+
 def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
     """
     Fills the entire game screen with a solid background color,
@@ -257,4 +258,48 @@ def fill_background(screen: pygame.Surface, color: tuple = (0, 0, 0)) -> None:
     try:
         screen.fill(color)
     except Exception as e:
-        raise EasyGameError(f"\n\n\nERROR: {e}") from None
+        raise EasyGameError(str(e)) from None
+
+
+def is_key_pressed(key_name: str) -> bool:
+    """
+    Checks whether a specific keyboard key is currently held down,
+    saving you from remembering key constant imports and state arrays.
+
+    Args:
+        key_name (str): The name of the key (e.g., `"SPACE"`, `"RETURN"`, `"UP"`).
+
+    Returns:
+        bool: `True` if the specified key is being pressed, `False` otherwise.
+
+    Raises:
+        EasyGameError: If an invalid key name is provided.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import is_key_pressed
+
+            if is_key_pressed("SPACE"):
+                print("Spacebar held down!")
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import pygame
+
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_SPACE]:
+                print("Spacebar held down!")
+            ```
+    """
+    try:
+        full_key_name = f"K_{key_name.upper()}"
+        if not hasattr(pygame, full_key_name):
+            raise EasyGameError(f"Invalid key name: '{key_name}'")
+        key_constant = getattr(pygame, full_key_name)
+        return bool(pygame.key.get_pressed()[key_constant])
+    except Exception as e:
+        if isinstance(e, EasyGameError):
+            raise
+        raise EasyGameError(str(e)) from None

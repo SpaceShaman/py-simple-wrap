@@ -15,6 +15,7 @@ from py_simple_package.src.py_simple.easy_game import (
     is_left_mouse_button_clicked,
     is_middle_mouse_button_clicked,
     is_right_mouse_button_clicked,
+    is_key_pressed,
 )
 
 
@@ -145,3 +146,15 @@ def test_fill_background(monkeypatch):
     bad_screen = SimpleNamespace(fill=fail_fill)
     with pytest.raises(EasyGameError, match="surface error"):
         fill_background(bad_screen, (255, 0, 0))
+
+
+def test_is_key_pressed_valid(monkeypatch):
+    """Valid keys should look up key state correctly via pygame."""
+    monkeypatch.setattr(easy_game.pygame.key, "get_pressed", lambda: {pygame.K_SPACE: 1})
+    assert is_key_pressed("SPACE") is True
+
+
+def test_is_key_pressed_invalid():
+    """Ensure invalid keys properly raise EasyGameError."""
+    with pytest.raises(EasyGameError):
+        is_key_pressed("INVALID_KEY_NAME_12345")
