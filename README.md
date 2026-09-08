@@ -52,6 +52,67 @@ py-simple-wrap is a beginner-friendly Python toolbox — simple, intuitive funct
  
 
 </div>
+
+---
+<div align="center">
+
+## Core contributors
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/atiqur-rahman-pro">
+        <img src="https://github.com/atiqur-rahman-pro.png" width="100px;" alt="atiqur rahman"/><br />
+        <sub><b>atiqur rahman</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/SemTiOne">
+        <img src="https://github.com/SemTiOne.png" width="100px;" alt="Dane Parin"/><br />
+        <sub><b>Dane Parin</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/gaoharimran29-glitch">
+        <img src="https://github.com/gaoharimran29-glitch.png" width="100px;" alt="Gaohar Imran"/><br />
+        <sub><b>Gaohar Imran</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/ghostfix-pm">
+        <img src="https://github.com/ghostfix-pm.png" width="100px;" alt="ghostfix-pm"/><br />
+        <sub><b>ghostfix-pm</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/jagjitkaur0000">
+        <img src="https://github.com/jagjitkaur0000.png" width="100px;" alt="jagjitkaur0000"/><br />
+        <sub><b>jagjitkaur0000</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/sara-czasak">
+        <img src="https://github.com/sara-czasak.png" width="100px;" alt="Sara Czasak"/><br />
+        <sub><b>Sara Czasak</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/VidyavathiGK">
+        <img src="https://github.com/VidyavathiGK.png" width="100px;" alt="Vidyavathi GK"/><br />
+        <sub><b>Vidyavathi GK</b></sub>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/Onion0121">
+        <img src="https://github.com/Onion0121.png" width="100px;" alt="Yassin Azzouzi"/><br />
+        <sub><b>Yassin Azzouzi</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+</div>
 <br>
 
 ```bash
