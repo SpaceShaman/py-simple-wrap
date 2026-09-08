@@ -9,6 +9,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.0] - 2026-09-08
+### Added
+- `easy_ai`'s `get_model`, `ask_ai`, `summarize_text`, and `translate_text` are now part of the public API (`from py_simple import ...`), for connecting to OpenAI, Ollama, Anthropic, Google, and Mistral chat models without hand-rolling each provider's SDK setup, with full test coverage, a reference page, and a tutorial. The `EasyAgent` class is still work-in-progress and not exported ([@VidyavathiGK](https://github.com/VidyavathiGK), [@Larslllllll](https://github.com/Larslllllll), [@Ctrl-Yam](https://github.com/Ctrl-Yam), [@sara-czasak](https://github.com/sara-czasak))
+- `easy_sql`'s query/write helpers (`run_insert`, `run_select`, `conditional_run_select`, `run_update`, `run_delete`, `delete_all_from_table`, `EasySqlError`) are now part of the public API — the `ExperimentalWarning` added in 0.4.0 has been removed now that they have full test coverage ([@sara-czasak](https://github.com/sara-czasak), [@AhmadBilalDSA](https://github.com/AhmadBilalDSA))
+- Added `get_json_keys` to `easy_json`, for pulling the top-level keys out of a dict/JSON structure ([@Saturday-boyi](https://github.com/Saturday-boyi))
+- Added `extract_hex_colors` to `easy_regex` and `pick_random_items` to `easy_random`, for selecting multiple random items at once ([@be-student](https://github.com/be-student))
+- Added `z_score` and `interquartile_range` to `easy_stats` ([@Steve99bs](https://github.com/Steve99bs))
+- Added `create_thumbnail` to `easy_images` ([@be-student](https://github.com/be-student))
+- Added `generate_slug` to `easy_generator`, for turning a string into a URL-safe slug ([@BirgirSJakobsson](https://github.com/BirgirSJakobsson))
+- Added `is_perfect_square` to `easy_math` ([@be-student](https://github.com/be-student))
+- Added `is_valid_creditcard`, `is_valid_phone_number`, `is_valid_ipv4`, `is_valid_ipv6`, `is_valid_json`, and `compare_json` to `easy_validator` ([@ohnsh](https://github.com/ohnsh), [@dave123981](https://github.com/dave123981), [@Killbill584](https://github.com/Killbill584), [@Larslllllll](https://github.com/Larslllllll))
+- Added `to_title_case` to `easy_strings`, `draw_text` and `fill_background` to `easy_game`, `run_with_timeout` to `easy_async`, and `run_py_string` to `easy_flow` — not yet part of the public API, but reachable via `from py_simple.<module> import ...` directly ([@UroojFatima-052](https://github.com/UroojFatima-052), [@VidyavathiGK](https://github.com/VidyavathiGK))
+- Added an "away status" issue template and workflow, an autoassign-on-request workflow for collaborators, and a stale-PR-closing workflow, so contributor-facing automation keeps running while Sara's at work ([@sara-czasak](https://github.com/sara-czasak))
+
+### Changed
+- Standardized `easy_sql`'s error handling around `EasySqlError` as part of removing the experimental warnings ([@sara-czasak](https://github.com/sara-czasak))
+
+### Fixed
+- Fixed a bug in `easy_strings` ([@sara-czasak](https://github.com/sara-czasak))
+- Removed a stray duplicate `src/` directory left over from an earlier package restructure ([@sara-czasak](https://github.com/sara-czasak))
+
 ## [0.4.1] - 2026-08-31
 ### Added
 - Added a feedback-survey call to action to the landing page, matching the one already on the README ([@sara-czasak](https://github.com/sara-czasak))
@@ -31,7 +52,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated `MODULES.md` and the README's module menu to include `easy_archive`, `easy_config`, and `easy_random`
 ### Fixed
 - Fixed a bug in `easy_file_manager` and a matching exception-name mismatch in its tests ([@sara-czasak](https://github.com/sara-czasak))
-
 
 ## [0.3.5] - 2026-08-21
 ### Added

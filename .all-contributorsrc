@@ -451,6 +451,97 @@
         "documentation",
         "code"
       ]
+    },
+    {
+      "login": "dave123981",
+      "name": "David King",
+      "avatar_url": "https://github.com/dave123981.png",
+      "profile": "https://github.com/dave123981",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "Steve99bs",
+      "name": "Tinko Stratiev",
+      "avatar_url": "https://github.com/Steve99bs.png",
+      "profile": "https://github.com/Steve99bs",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "Gambit-Checkmate",
+      "name": "Checkmate",
+      "avatar_url": "https://github.com/Gambit-Checkmate.png",
+      "profile": "https://github.com/Gambit-Checkmate",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "AhmadBilalDSA",
+      "name": "Ahmad Bilal",
+      "avatar_url": "https://github.com/AhmadBilalDSA.png",
+      "profile": "https://github.com/AhmadBilalDSA",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "Larslllllll",
+      "name": "Larslllllll",
+      "avatar_url": "https://github.com/Larslllllll.png",
+      "profile": "https://github.com/Larslllllll",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "be-student",
+      "name": "송은우",
+      "avatar_url": "https://github.com/be-student.png",
+      "profile": "https://github.com/be-student",
+      "contributions": [
+        "test",
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "Cid-oe",
+      "name": "Cid-oe",
+      "avatar_url": "https://github.com/Cid-oe.png",
+      "profile": "https://github.com/Cid-oe",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "BirgirSJakobsson",
+      "name": "Birgir Sveinn Jakobsson",
+      "avatar_url": "https://github.com/BirgirSJakobsson.png",
+      "profile": "https://github.com/BirgirSJakobsson",
+      "contributions": [
+        "test",
+        "documentation",
+        "code"
+      ]
+    },
+    {
+      "login": "UroojFatima-052",
+      "name": "Urooj Fatima",
+      "avatar_url": "https://github.com/UroojFatima-052.png",
+      "profile": "https://github.com/UroojFatima-052",
+      "contributions": [
+        "test",
+        "code"
+      ]
     }
   ]
 }

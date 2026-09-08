@@ -6,7 +6,11 @@ from py_simple_package.src.py_simple.easy_validator import (
     is_valid_zipcode,
     is_valid_url,
     is_password_secure,
-    is_valid_creditcard)
+    is_valid_creditcard,
+    is_valid_phone_number,
+    is_valid_json,
+    is_valid_ipv4,
+    is_valid_ipv6)
 
 class TestEasyValidator:
 
@@ -109,3 +113,82 @@ class TestEasyValidator:
 
     def test_creditcard_validation(self, card_num, expected):
         assert is_valid_creditcard(card_num) is expected
+
+    @pytest.mark.parametrize(
+        "phone_number, expected",
+        [
+            ("1234567890", True),
+            ("123-456-7890", True),
+            ("(123) 456-7890", True),
+            ("123.456.7890", True),
+            ("123 456 7890", True),
+            ("+1 123-456-7890", True),
+            ("+11234567890", True),
+            ("12345", False),
+            ("123-456-78901", False),
+            ("abc-456-7890", False),
+            ("", False),
+            ("123-45-6789", False),
+            ("+1234567890", False),
+        ],
+    )
+
+    def test_phone_number_validation(self, phone_number, expected):
+        assert is_valid_phone_number(phone_number) is expected
+    @pytest.mark.parametrize(
+        "json_string, expected",
+        [
+            ('{"key": "value"}', True),
+            ('[1, 2, 3]', True),
+            ('"just a string"', True),
+            ('123', True),
+            ('{key: "value"}', False),
+            ('{"key": "value",}', False),
+            ('', False),
+            ("{'key': 'value'}", False),
+        ],
+    )
+
+    def test_json_validation(self, json_string, expected):
+        assert is_valid_json(json_string) is expected
+
+    @pytest.mark.parametrize(
+        "ip, expected",
+        [
+            ("192.168.1.1", True),
+            ("0.0.0.0", True),
+            ("255.255.255.255", True),
+            ("256.1.1.1", False),
+            ("192.168.1", False),
+            ("192.168.1.1.1", False),
+            ("192.168.01.1", False),
+            ("", False),
+            ("abc.def.ghi.jkl", False),
+        ],
+    )
+
+    def test_ipv4_validation(self, ip, expected):
+        assert is_valid_ipv4(ip) is expected
+
+
+    @pytest.mark.parametrize(
+        "ip,expected",
+        [
+            ("2001:0db8:85a3:0000:0000:8a2e:0370:7334", True),
+            ("2001:db8:85a3::8a2e:370:7334", True),
+            ("::1", True),
+            ("::", True),
+            ("fe80::1", True),
+            ("2001:db8::", True),
+            ("::ffff:192.168.1.1", True),
+            ("2001:0db8:85a3:0000:0000:8a2e:0370:733g", False),
+            ("192.168.1.1", False),
+            ("abc.def.ghi.jkl", False),
+            ("not an ip", False),
+            ("", False),
+            ("2001:db8::1::1", False),  # double :: is invalid
+            ("2001:0db8:85a3:0000:0000:8a2e:0370:7334:extra", False),
+        ],
+    )
+    def test_ipv6_validation(self, ip, expected):
+        assert is_valid_ipv6(ip) is expected

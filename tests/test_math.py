@@ -1,10 +1,12 @@
 import pytest
+from py_simple_package.src.py_simple import is_perfect_square as public_is_perfect_square
 
 from py_simple_package.src.py_simple.easy_math import (
     divisors,
     factorial,
     fibonacci,
     get_least_common_multiple,
+    is_perfect_square,
     prime_factorization,
     sum_of_digits,
 )
@@ -125,3 +127,29 @@ def test_divisors(n, expected):
 def test_divisors_rejects_less_than_one(n):
     with pytest.raises(ValueError):
         divisors(n)
+
+
+@pytest.mark.parametrize(
+    "n, expected",
+    [
+        (0, True),
+        (1, True),
+        (4, True),
+        (49, True),
+        (50, False),
+        (10**12, True),
+        (10**12 - 1, False),
+    ],
+)
+def test_is_perfect_square(n, expected):
+    assert is_perfect_square(n) is expected
+
+
+def test_is_perfect_square_is_available_from_public_api():
+    assert public_is_perfect_square is is_perfect_square
+
+
+@pytest.mark.parametrize("n", [-1, -25, 4.0, "9"])
+def test_is_perfect_square_rejects_invalid_input(n):
+    with pytest.raises(ValueError):
+        is_perfect_square(n)

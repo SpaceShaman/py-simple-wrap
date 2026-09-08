@@ -431,3 +431,6 @@ def test_future_slash_mm_dd_yyyy():
     assert result == expected_output, f"Expected {expected_output} but got {result}"
 
     assert result == expected_output, f"Expected {expected_output} but got {result}"
+
+    assert result == expected_output, f"Expected {expected_output} but got {result}"
+

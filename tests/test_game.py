@@ -15,7 +15,9 @@ from py_simple_package.src.py_simple.easy_game import (
     is_left_mouse_button_clicked,
     is_middle_mouse_button_clicked,
     is_right_mouse_button_clicked,
+    add-is-key-pressed-function
     is_key_pressed,
+    draw_text,
 )
 
 
@@ -148,13 +150,71 @@ def test_fill_background(monkeypatch):
         fill_background(bad_screen, (255, 0, 0))
 
 
-def test_is_key_pressed_valid(monkeypatch):
-    """Valid keys should look up key state correctly via pygame."""
-    monkeypatch.setattr(easy_game.pygame.key, "get_pressed", lambda: {pygame.K_SPACE: 1})
-    assert is_key_pressed("SPACE") is True
+def test_draw_text_success(monkeypatch):
+    """Test that draw_text successfully initializes font, renders text, and blits to screen."""
+    calls = []
+    font_mock = SimpleNamespace(
+        render=lambda text, antialias, color: calls.append(("render", text, color)) or object()
+    )
+
+    monkeypatch.setattr(easy_game.pygame.font, "get_init", lambda: False)
+    monkeypatch.setattr(easy_game.pygame.font, "init", lambda: calls.append("font_init"))
+    monkeypatch.setattr(easy_game.pygame.font, "Font", lambda file, size: calls.append(("font_size", size)) or font_mock)
+
+    screen = SimpleNamespace(blit=lambda surf, dest: calls.append(("blit", dest)))
+
+    draw_text(screen, "Hello", 50, 100, 32, (255, 0, 0))
+
+    assert "font_init" in calls
+    assert ("font_size", 32) in calls
+    assert ("render", "Hello", (255, 0, 0)) in calls
+    assert ("blit", (50, 100)) in calls
 
 
-def test_is_key_pressed_invalid():
-    """Ensure invalid keys properly raise EasyGameError."""
-    with pytest.raises(EasyGameError):
-        is_key_pressed("INVALID_KEY_NAME_12345")
+def test_draw_text_reuses_initialized_font(monkeypatch):
+    """An initialized font subsystem should not be initialized a second time."""
+    rendered = object()
+    blits = []
+    font = SimpleNamespace(render=lambda *_args: rendered)
+
+    monkeypatch.setattr(easy_game.pygame.font, "get_init", lambda: True)
+    monkeypatch.setattr(
+        easy_game.pygame.font,
+        "init",
+        lambda: pytest.fail("font.init should not be called when already initialized"),
+    )
+    monkeypatch.setattr(easy_game.pygame.font, "Font", lambda _file, _size: font)
+    screen = SimpleNamespace(blit=lambda surface, position: blits.append((surface, position)))
+
+    draw_text(screen, "Ready", 12, 34)
+
+    assert blits == [(rendered, (12, 34))]
+
+
+def test_draw_text_wraps_pygame_errors(monkeypatch):
+    """Font or rendering failures should use the module's consistent exception."""
+    monkeypatch.setattr(easy_game.pygame.font, "get_init", lambda: True)
+
+    def fail_to_create_font(_file, _size):
+        raise RuntimeError("font unavailable")
+
+    monkeypatch.setattr(easy_game.pygame.font, "Font", fail_to_create_font)
+
+    with pytest.raises(EasyGameError, match="font unavailable") as exc_info:
+        draw_text(SimpleNamespace(), "Hello", 0, 0)
+
+    assert exc_info.value.__cause__ is None
+
+
+def test_easy_game_error_message():
+    """EasyGameError should store message and format string properly."""
+    err = EasyGameError("custom error message")
+    assert err.message == "custom error message"
+    assert str(err) == "custom error message"
+
+
+def test_allowed_keys_contains_pygame_key_constants():
+    """ALLOWED_KEYS should only contain attributes starting with K_."""
+    assert len(easy_game.ALLOWED_KEYS) > 0
+    assert all(k.startswith("K_") for k in easy_game.ALLOWED_KEYS)
+    assert "K_SPACE" in easy_game.ALLOWED_KEYS or "K_SPACE" in dir(easy_game.pygame)

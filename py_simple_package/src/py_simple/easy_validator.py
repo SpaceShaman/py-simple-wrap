@@ -3,6 +3,7 @@ easy_validator is built to simplify validation.
 """
 import re
 from string import punctuation
+import json
 
 
 def is_valid_email(email: str) -> bool:
@@ -312,3 +313,154 @@ def is_valid_creditcard(card_num: str):
             sum += doubled if doubled < 10 else doubled - 9
 
     return sum % 10 == 0
+
+
+def is_valid_phone_number(phone_number: str) -> bool:
+    r"""
+    Returns true if the phone number is a valid US-style phone number.
+
+    Accepts an optional leading "+1" country code, an optional area code
+    in parentheses, and digit groups separated by spaces, dashes, or dots
+    (or no separator at all).
+
+    Args:
+        phone_number (str): The phone number to validate.
+
+    Returns:
+        bool: True if the phone number is valid, False otherwise.
+
+    Example:
+        === "The Py_simple Way"
+```python
+            from py_simple import is_valid_phone_number
+
+            result = is_valid_phone_number("(123) 456-7890")  # -> True
+```
+
+        === "The Traditional Way"
+```python
+            import re
+
+            pattern = r'^(\+1[\s.-]?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$'
+            result = bool(re.fullmatch(pattern, "(123) 456-7890"))
+```
+    """
+    pattern = r'^(\+1[\s.-]?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$'
+    return bool(re.fullmatch(pattern, phone_number))
+def is_valid_json(json_string: str) -> bool:
+    r"""
+    Returns true if the string is valid JSON.
+ 
+    Arguments:
+        json_string (str): the string to validate.
+ 
+    Returns:
+        bool: True if the string parses as valid JSON, False otherwise.
+ 
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import is_valid_json
+ 
+            result = is_valid_json('{"key": "value"}')  # -> True
+            ```
+ 
+        === "The Traditional Way"
+            ```python
+            import json
+ 
+            try:
+                json.loads('{"key": "value"}')
+                result = True
+            except (ValueError, TypeError):
+                result = False
+            ```
+    """
+    try:
+        json.loads(json_string)
+        return True
+    except (ValueError, TypeError):
+        return False
+ 
+ 
+def is_valid_ipv4(ip: str) -> bool:
+    r"""
+    Returns true if the string is a valid IPv4 address.
+ 
+    Arguments:
+        ip (str): the IP address to validate.
+ 
+    Returns:
+        bool: True if the IP address is valid, False otherwise.
+ 
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import is_valid_ipv4
+ 
+            result = is_valid_ipv4("192.168.1.1")  # -> True
+            ```
+ 
+        === "The Traditional Way"
+            ```python
+            pattern = r'(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})'
+            match = re.fullmatch(pattern, "192.168.1.1")
+            result = bool(match) and all(0 <= int(g) <= 255 for g in match.groups())
+            ```
+    """
+    pattern = r'(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})'
+    match = re.fullmatch(pattern, ip)
+ 
+    if not match:
+        return False
+ 
+    # regex only checks digit count, not range or leading zeros
+    for octet in match.groups():
+        if len(octet) > 1 and octet[0] == '0':
+            return False
+        if not 0 <= int(octet) <= 255:
+            return False
+ 
+    return True
+
+
+
+def is_valid_ipv6(ip: str) -> bool:
+    r"""
+    Returns true if the string is a valid IPv6 address.
+
+    Handles full IPv6 addresses, including those with zone IDs stripped,
+    as well as IPv4-mapped IPv6 addresses (e.g. ::ffff:192.168.1.1).
+    Does not accept IPv4-mapped notation where the IPv4 part exceeds 255.
+
+    Arguments:
+        ip (str): the IP address to validate.
+
+    Returns:
+        bool: True if the IP address is valid, False otherwise.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import is_valid_ipv6
+
+            result = is_valid_ipv6("2001:0db8:85a3:0000:0000:8a2e:0370:7334")  # -> True
+            ```
+
+        === "The Traditional Way"
+            ```python
+            import ipaddress
+
+            try:
+                ipaddress.IPv6Address(ip)
+                result = True
+            except ValueError:
+                result = False
+            ```
+    """
+    import ipaddress
+    try:
+        ipaddress.IPv6Address(ip)
+        return True
+    except ValueError:
+        return False
