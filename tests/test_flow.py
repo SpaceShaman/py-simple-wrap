@@ -9,13 +9,14 @@ from py_simple_package.src.py_simple.easy_flow import (
     retry,
     run_py_file,
     run_py_file_safe,
+    run_with_fallback,
     time_function_call,
     time_it,
 )
 
 
 class TestEasyFlowError:
-    
+
     def test_is_exception(self):
         """Tests if it is an exception."""
         assert issubclass(EasyFlowError, Exception)
@@ -123,6 +124,7 @@ class TestTimeFunctionCall:
 
     def test_function_error_raises_easyflowerror(self):
         """Checks if exception are wrapped correctly."""
+
         def boom():
             raise ValueError("bad function")
 
@@ -134,6 +136,7 @@ class TestTimeFunctionCall:
 class TestTimeIt:
     def test_returns_original_result(self):
         """Should return whatever the wrapped function returns."""
+
         @time_it
         def add(a, b):
             return a + b
@@ -142,6 +145,7 @@ class TestTimeIt:
 
     def test_prints_timing(self, capsys):
         """Should print the function's name and elapsed time."""
+
         @time_it
         def add(a, b):
             return a + b
@@ -153,6 +157,7 @@ class TestTimeIt:
 
     def test_supports_args_and_kwargs(self):
         """Should forward both positional and keyword arguments."""
+
         @time_it
         def greet(name, greeting="Hello"):
             return f"{greeting}, {name}!"
@@ -255,3 +260,8 @@ class TestRetry:
             retry(always_fails, attempts=1)
 
         assert sleep_calls == []
+
+
+def test_run_with_fallback():
+    assert run_with_fallback(int, 0, "invalid") == 0
+    assert run_with_fallback(int, 0, "42") == 42

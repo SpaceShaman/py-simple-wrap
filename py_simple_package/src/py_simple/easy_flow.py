@@ -204,9 +204,9 @@ def retry(func, attempts=3, delay=1):
 
     Args:
         func (callable): The function to execute.
-        attempts (int, optional): Maximum number of times to try running 
+        attempts (int, optional): Maximum number of times to try running
             the function. Defaults to 3.
-        delay (int or float, optional): Time to wait in seconds between 
+        delay (int or float, optional): Time to wait in seconds between
             failed attempts. Defaults to 1.
 
     Returns:
@@ -257,3 +257,40 @@ def retry(func, attempts=3, delay=1):
             time.sleep(delay)
     return None
 
+
+def run_with_fallback(func, default_value, *args, **kwargs):
+    """
+    Executes a function and returns its result, or returns a default
+    fallback value if an exception is raised.
+
+    Args:
+        func (callable): The function to execute.
+        default_value (Any): The value to return if the function fails.
+        *args: Positional arguments to pass to the function.
+        **kwargs: Keyword arguments to pass to the function.
+
+    Returns:
+        Any: The function's return value or the default fallback value.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import run_with_fallback
+
+            result = run_with_fallback(int, 0, "not_a_number")
+            print(result)  # -> 0
+            ```
+
+        === "The Traditional Way"
+            ```python
+            try:
+                result = int("not_a_number")
+            except Exception:
+                result = 0
+            print(result)  # -> 0
+            ```
+    """
+    try:
+        return func(*args, **kwargs)
+    except Exception:
+        return default_value
