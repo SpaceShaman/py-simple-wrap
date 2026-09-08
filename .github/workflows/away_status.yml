@@ -1,0 +1,32 @@
+name: Away status on PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  away-status:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Check if within away window and comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+
+          # Europe/Warsaw handles CET/CEST DST switches automatically —
+          # no manual UTC offset math needed.
+          day=$(TZ='Europe/Warsaw' date +%u)   # 1=Mon ... 7=Sun
+          hour=$(TZ='Europe/Warsaw' date +%H)  # 00-23, local Warsaw time
+
+          # Wed(3) through Sun(7), before 17:00 local time.
+          if [ "$day" -ge 3 ] && [ "$day" -le 7 ] && [ "$hour" -lt 17 ]; then
+            echo "Within away window (day=$day hour=$hour Warsaw time) — posting comment."
+            gh pr comment "$PR_NUMBER" --repo "$REPO" --body-file .github/ISSUE_TEMPLATE/away_message.md
+          else
+            echo "Outside away window (day=$day hour=$hour Warsaw time) — skipping."
+          fi
