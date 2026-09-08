@@ -56,7 +56,7 @@ py-simple-wrap is a beginner-friendly Python toolbox — simple, intuitive funct
 ---
 <div align="center">
 
-## Core contributors
+## py-simple-wrap *collaborators*
 
 <table>
   <tr>
