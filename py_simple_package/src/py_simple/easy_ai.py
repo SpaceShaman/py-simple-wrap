@@ -1,5 +1,3 @@
-# ⚠️️ WORK IN PROGRESS NOT IN PUBLIC API ⚠️
-
 """
 easy_ai wraps common LangChain functionality to make it easier to use.
 """

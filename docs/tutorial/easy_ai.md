@@ -7,7 +7,7 @@ Working with artificial intelligence models often requires managing multiple ven
 Imagine you're building an application that needs to interact with AI models. Depending on your environment, you might want to use a cloud provider like OpenAI for production or a local model with Ollama for offline testing, without rewriting your model initialization logic.
 
 ```python
-from py_simple.easy_ai import get_model
+from py_simple import get_model
 
 # Initialize a cloud model using OpenAI
 openai_model = get_model(provider="openai", model_name="gpt-4o", api_key="your-api-key")
