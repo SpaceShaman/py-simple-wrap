@@ -16,8 +16,9 @@
  
 [![PyPI](https://img.shields.io/pypi/v/py-simple-wrap?style=flat-square&logo=pypi&logoColor=white&color=3775A9)](https://pypi.org/project/py-simple-wrap/)
 [![Tests](https://img.shields.io/github/actions/workflow/status/sara-czasak/py-simple-wrap/tests.yml?style=flat-square&logo=github&label=tests)](https://github.com/sara-czasak/py-simple-wrap/actions/workflows/tests.yml)
-[![Contributors](https://img.shields.io/badge/contributors-39-orange?style=flat-square)](CONTRIBUTORS.md)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE.md)
+[![Contributors](https://img.shields.io/badge/contributors-48-orange?style=flat-square)](CONTRIBUTORS.md)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/py-simple-wrap?period=total&units=NONE&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/py-simple-wrap)
+[![License](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE.md)
 [![Discord](https://img.shields.io/discord/1533803449895092245?style=flat-square&logo=discord&logoColor=white&label=discord&color=5865F2)](https://discord.gg/Ge5HnVw2p)
  
 </div>
@@ -51,6 +52,67 @@ py-simple-wrap is a beginner-friendly Python toolbox — simple, intuitive funct
 | More detailed overview of all modules, links to documentation and tutorials, in other words everything you need to get started | Here you will find everything you need! From references through module tutorials all the way to contributor tutorials! | templates for contributors. This project is meant to help everyone learn and grow, including beginner contributors. The goal is to try to help everyone succeed on there journey with py-simple-wrap and python as a whole. | This is a gamified hub for contributors. You can participate in challenges, earn achievements, join a guild (or two). Search through open issues faster and check your progress in the leaderboard. This is meant to make contributing more fun! |
  
 
+</div>
+
+---
+<div align="center">
+
+## py-simple-wrap *collaborators*
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/atiqur-rahman-pro">
+        <img src="https://github.com/atiqur-rahman-pro.png" width="100px;" alt="atiqur rahman"/><br />
+        <sub><b>atiqur rahman</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/SemTiOne">
+        <img src="https://github.com/SemTiOne.png" width="100px;" alt="Dane Parin"/><br />
+        <sub><b>Dane Parin</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/gaoharimran29-glitch">
+        <img src="https://github.com/gaoharimran29-glitch.png" width="100px;" alt="Gaohar Imran"/><br />
+        <sub><b>Gaohar Imran</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/ghostfix-pm">
+        <img src="https://github.com/ghostfix-pm.png" width="100px;" alt="ghostfix-pm"/><br />
+        <sub><b>ghostfix-pm</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/jagjitkaur0000">
+        <img src="https://github.com/jagjitkaur0000.png" width="100px;" alt="jagjitkaur0000"/><br />
+        <sub><b>jagjitkaur0000</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/sara-czasak">
+        <img src="https://github.com/sara-czasak.png" width="100px;" alt="Sara Czasak"/><br />
+        <sub><b>Sara Czasak</b></sub>
+      </a>
+    </td>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/VidyavathiGK">
+        <img src="https://github.com/VidyavathiGK.png" width="100px;" alt="Vidyavathi GK"/><br />
+        <sub><b>Vidyavathi GK</b></sub>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="14.28%">
+      <a href="https://github.com/Onion0121">
+        <img src="https://github.com/Onion0121.png" width="100px;" alt="Yassin Azzouzi"/><br />
+        <sub><b>Yassin Azzouzi</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 </div>
 <br>
 
@@ -108,6 +170,6 @@ gets built next. **[Take the 2-minute survey →](https://docs.google.com/forms/
 
 **[Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [License](LICENSE.md)**
  
-<sub>Built for beginners, grown by 30+ contributors ✨</sub>
+<sub>Built for beginners, grown by 40+ contributors ✨</sub>
  
 </div>

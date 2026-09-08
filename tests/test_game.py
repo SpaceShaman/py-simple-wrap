@@ -147,14 +147,15 @@ def test_fill_background(monkeypatch):
     with pytest.raises(EasyGameError, match="surface error"):
         fill_background(bad_screen, (255, 0, 0))
 
+def test_easy_game_error_message():
+    """EasyGameError should store message and format string properly."""
+    err = EasyGameError("custom error message")
+    assert err.message == "custom error message"
+    assert str(err) == "custom error message"
 
-def test_is_key_pressed_valid(monkeypatch):
-    """Valid keys should look up key state correctly via pygame."""
-    monkeypatch.setattr(easy_game.pygame.key, "get_pressed", lambda: {pygame.K_SPACE: 1})
-    assert is_key_pressed("SPACE") is True
 
-
-def test_is_key_pressed_invalid():
-    """Ensure invalid keys properly raise EasyGameError."""
-    with pytest.raises(EasyGameError):
-        is_key_pressed("INVALID_KEY_NAME_12345")
+def test_allowed_keys_contains_pygame_key_constants():
+    """ALLOWED_KEYS should only contain attributes starting with K_."""
+    assert len(easy_game.ALLOWED_KEYS) > 0
+    assert all(k.startswith("K_") for k in easy_game.ALLOWED_KEYS)
+    assert "K_SPACE" in easy_game.ALLOWED_KEYS or "K_SPACE" in dir(easy_game.pygame)

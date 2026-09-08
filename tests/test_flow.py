@@ -4,6 +4,7 @@ import time
 
 import pytest
 
+from py_simple_package.src.py_simple import easy_flow
 from py_simple_package.src.py_simple.easy_flow import (
     EasyFlowError,
     retry,
@@ -12,6 +13,7 @@ from py_simple_package.src.py_simple.easy_flow import (
     run_with_fallback,
     time_function_call,
     time_it,
+    run_py_string,
 )
 
 
@@ -262,6 +264,19 @@ class TestRetry:
         assert sleep_calls == []
 
 
+ add-run-with-fallback-function
 def test_run_with_fallback():
     assert run_with_fallback(int, 0, "invalid") == 0
     assert run_with_fallback(int, 0, "42") == 42
+def test_run_py_string_success(capsys):
+    """Test that run_py_string correctly executes a python command string."""
+    run_py_string("print('test output')")
+    captured = capsys.readouterr()
+    assert "test output" in captured.out
+
+
+def test_run_py_string_error():
+    """Test that run_py_string wraps execution errors in EasyFlowError."""
+    with pytest.raises(EasyFlowError):
+        run_py_string("1 / 0")
+ main

@@ -7,6 +7,8 @@ from py_simple_package.src.py_simple.easy_stats import (
     percentile,
     standard_deviation,
     variance,
+    z_score,
+    interquartile_range,
 )
 
 
@@ -132,3 +134,39 @@ def test_percentile_rejects_empty_list():
 def test_percentile_rejects_invalid_percent(percent):
     with pytest.raises(ValueError):
         percentile([1, 2, 3], percent)
+
+
+@pytest.mark.parametrize(
+    "nums, value, expected",
+    [
+        ([1, 2, 3, 4, 5], 5, 1.26),
+        ([1, 2, 3, 4, 5], 3, 0.0),
+        ([10, 12, 14], 10, -1.0),
+    ],
+)
+def test_z_score(nums, value, expected):
+    assert z_score(nums, value) == expected
+
+
+@pytest.mark.parametrize("nums", [[], [1]])
+def test_z_score_rejects_too_few_numbers(nums):
+    with pytest.raises(ValueError):
+        z_score(nums, 1) 
+
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([1, 2, 3, 4], 2),
+        ([4, 1, 2, 3], 2),
+        ([1, 2, 3, 4, 5, 6, 7, 8], 4),
+        ([5, 5, 5, 5], 0),
+        ([10], 0),
+    ],
+)
+def test_interquartile_range(nums, expected):
+    assert interquartile_range(nums) == expected
+
+
+def test_interquartile_range_rejects_empty_list():
+    with pytest.raises(ValueError):
+        interquartile_range([])

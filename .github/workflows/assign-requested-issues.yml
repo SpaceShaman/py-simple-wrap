@@ -1,0 +1,54 @@
+name: Assign issues on request
+
+on:
+  schedule:
+    # 3x/day: 06:00, 14:00, 22:00 UTC
+    - cron: '0 6,14,22 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  assign-requested-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Find and honor assignment requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          # Look back 10h so the 8h gap between runs always has overlap.
+          since=$(date -u -d '10 hours ago' +%Y-%m-%dT%H:%M:%SZ)
+
+          # Regex for a request to be assigned. Keep intentionally narrow to
+          # avoid false positives like "assigned to someone else already".
+          request_pattern='(^|[^a-zA-Z])(assign(ed)? me|assign this (issue )?to me|can (i|I) (be assigned|take|work on) this|please assign me|i.d like to (work on|take) this|can i pick this up)'
+
+          open_issues=$(gh issue list --repo "$REPO" --state open --json number,assignees --limit 200)
+
+          echo "$open_issues" | jq -c '.[]' | while read -r issue; do
+            number=$(echo "$issue" | jq -r '.number')
+            has_assignee=$(echo "$issue" | jq -r '.assignees | length > 0')
+
+            if [ "$has_assignee" = "true" ]; then
+              continue
+            fi
+
+            comments=$(gh api "repos/$REPO/issues/$number/comments?since=$since" --paginate)
+
+            requester=$(echo "$comments" | jq -r --arg since "$since" '
+              .[] | select(.created_at >= $since) | select(.body != null)
+            ' | jq -sr --arg pat "$request_pattern" '
+              [.[] | select(.body | test($pat; "i"))] | last | .user.login // empty
+            ')
+
+            if [ -z "$requester" ]; then
+              continue
+            fi
+
+            echo "Assigning issue #$number to @$requester"
+            gh issue edit "$number" --repo "$REPO" --add-assignee "$requester" || \
+              echo "Could not assign @$requester to #$number (not a collaborator? no push access to assign?) — skipping."
+          done

@@ -2,7 +2,7 @@ import zipfile
 
 import pytest
 
-from py_simple.easy_archive import (
+from py_simple_package.src.py_simple.easy_archive import (
     zip_folder,
     zip_files,
     unzip_file,

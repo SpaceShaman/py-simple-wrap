@@ -1,5 +1,3 @@
-# ⚠️️ WORK IN PROGRESS NOT IN PUBLIC API ⚠️
-
 """
 easy_ai wraps common LangChain functionality to make it easier to use.
 """
@@ -283,6 +281,52 @@ def summarize_text(ai_model: BaseChatModel, text: str) -> str:
     except Exception as e:
         raise EasyAIError(f"\n\n\nERROR: {e}") from None
 
+
+def translate_text(ai_model: BaseChatModel, text: str, target_lang: str = "English") -> str:
+    """
+    Sends a request to translate the provided text into the target
+    language using the given LangChain chat model, without you having
+    to format messages manually.
+
+    Args:
+        ai_model (BaseChatModel): A LangChain chat model instance,
+            such as one returned by `get_model()`.
+        text (str): The raw text string to be translated.
+        target_lang (str): The name of the language to translate
+            into (e.g. "French", "Spanish", "German").
+            Defaults to "English".
+
+    Returns:
+        str: The translated text.
+
+    Raises:
+        EasyAIError: If the underlying model call fails.
+
+    Example:
+        === "The Py_simple Way"
+            ```python
+            from py_simple import get_model, translate_text
+
+            model = get_model("anthropic", "claude-sonnet-4-6")
+            translation = translate_text(model, "Hola mundo", target_lang="English")
+            ```
+
+        === "The Traditional Way"
+            ```python
+            from langchain_anthropic import ChatAnthropic
+            from langchain_core.messages import HumanMessage
+
+            model = ChatAnthropic(model_name="claude-sonnet-4-6")
+            translation = model.invoke([
+                HumanMessage(content="Translate to English: Hola mundo")
+            ]).content
+            ```
+    """
+    try:
+        prompt = f"Translate to {target_lang}:\n\n{text}"
+        return ask_ai(ai_model, prompt)
+    except Exception as e:
+        raise EasyAIError(f"\n\n\nERROR: {e}") from None
 
 # ⚠️️ WORK IN PROGRESS ⚠️
 # This class will eventually take the complexity of setting up an agent
