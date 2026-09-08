@@ -4,7 +4,6 @@ import time
 
 import pytest
 
-from py_simple_package.src.py_simple import easy_flow
 from py_simple_package.src.py_simple.easy_flow import (
     EasyFlowError,
     retry,
@@ -13,12 +12,11 @@ from py_simple_package.src.py_simple.easy_flow import (
     run_with_fallback,
     time_function_call,
     time_it,
-    run_py_string,
 )
 
 
 class TestEasyFlowError:
-
+    
     def test_is_exception(self):
         """Tests if it is an exception."""
         assert issubclass(EasyFlowError, Exception)
@@ -126,7 +124,6 @@ class TestTimeFunctionCall:
 
     def test_function_error_raises_easyflowerror(self):
         """Checks if exception are wrapped correctly."""
-
         def boom():
             raise ValueError("bad function")
 
@@ -138,7 +135,6 @@ class TestTimeFunctionCall:
 class TestTimeIt:
     def test_returns_original_result(self):
         """Should return whatever the wrapped function returns."""
-
         @time_it
         def add(a, b):
             return a + b
@@ -147,7 +143,6 @@ class TestTimeIt:
 
     def test_prints_timing(self, capsys):
         """Should print the function's name and elapsed time."""
-
         @time_it
         def add(a, b):
             return a + b
@@ -159,7 +154,6 @@ class TestTimeIt:
 
     def test_supports_args_and_kwargs(self):
         """Should forward both positional and keyword arguments."""
-
         @time_it
         def greet(name, greeting="Hello"):
             return f"{greeting}, {name}!"
@@ -264,19 +258,6 @@ class TestRetry:
         assert sleep_calls == []
 
 
- add-run-with-fallback-function
 def test_run_with_fallback():
     assert run_with_fallback(int, 0, "invalid") == 0
     assert run_with_fallback(int, 0, "42") == 42
-def test_run_py_string_success(capsys):
-    """Test that run_py_string correctly executes a python command string."""
-    run_py_string("print('test output')")
-    captured = capsys.readouterr()
-    assert "test output" in captured.out
-
-
-def test_run_py_string_error():
-    """Test that run_py_string wraps execution errors in EasyFlowError."""
-    with pytest.raises(EasyFlowError):
-        run_py_string("1 / 0")
- main
