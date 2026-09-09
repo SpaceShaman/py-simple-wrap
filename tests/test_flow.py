@@ -9,10 +9,27 @@ from py_simple_package.src.py_simple.easy_flow import (
     retry,
     run_py_file,
     run_py_file_safe,
+    run_py_string,
     run_with_fallback,
     time_function_call,
     time_it,
 )
+
+
+class TestRunPyString:
+    @pytest.mark.parametrize("code_string,expected_output", [
+        ("print('hello world')", "hello world\n"),
+        ("a = 1 + 1\nprint(a)", "2\n"),
+    ])
+    def test_runs_successfully(self, capsys, code_string, expected_output):
+        run_py_string(code_string)
+        captured = capsys.readouterr()
+        assert captured.out == expected_output
+
+    def test_script_error_raises(self):
+        with pytest.raises(EasyFlowError) as exc_info:
+            run_py_string("raise ValueError('boom')")
+        assert "boom" in str(exc_info.value)
 
 
 class TestEasyFlowError:
