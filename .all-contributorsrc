@@ -542,6 +542,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "Yuvrajup",
+      "name": "Yuvrajup",
+      "avatar_url": "https://github.com/Yuvrajup.png",
+      "profile": "https://github.com/Yuvrajup",
+      "contributions": [
+        "test"
+      ]
     }
   ]
 }

@@ -441,6 +441,12 @@ Every tile below is a real person who showed up for this project. 💛
         <sub><b>송은우</b></sub>
       </a>
     </td>
+    <td align="center" valign="top" width="8.6%">
+      <a href="https://github.com/Yuvrajup">
+        <img src="https://github.com/Yuvrajup.png" width="100px;" alt="Yuvrajup"/><br />
+        <sub><b>Yuvrajup</b></sub>
+      </a>
+    </td>
   </tr>
 </table>
 
@@ -733,6 +739,9 @@ The Module Magicians. The Code Conjurers. The Test Sentinels. The Lore Keepers. 
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Cid-oe"><img src="https://github.com/Cid-oe.png?s=80" width="80px;" alt="Cid-oe"/><br /><sub><b>Cid-oe</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Cid-oe" title="Tests">🧪</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/BirgirSJakobsson"><img src="https://github.com/BirgirSJakobsson.png?s=80" width="80px;" alt="Birgir Sveinn Jakobsson"/><br /><sub><b>Birgir Sveinn Jakobsson</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=BirgirSJakobsson" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=BirgirSJakobsson" title="Docs">📖</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=BirgirSJakobsson" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/UroojFatima-052"><img src="https://github.com/UroojFatima-052.png?s=80" width="80px;" alt="Urooj Fatima"/><br /><sub><b>Urooj Fatima</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=UroojFatima-052" title="Tests">🧪</a> <a href="https://github.com/sara-czasak/py_simple/commits?author=UroojFatima-052" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Yuvrajup"><img src="https://github.com/Yuvrajup.png?s=80" width="80px;" alt="Yuvrajup"/><br /><sub><b>Yuvrajup</b></sub></a><br /><a href="https://github.com/sara-czasak/py_simple/commits?author=Yuvrajup" title="Tests">🧪</a></td>
     </tr>
   </tbody>
 </table>
