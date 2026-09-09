@@ -123,3 +123,6 @@ from .easy_config import (
 from .easy_ai import (
     ask_ai, summarize_text, translate_text, get_model,
 )
+from .easy_logging import (
+    log_step, log_function
+)
